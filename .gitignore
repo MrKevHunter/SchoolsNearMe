@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Source/*/obj
 /Source/*/bin
 _ReSharper.*
@@ -63,3 +64,11 @@ _ReSharper*/
 
 #NuGet
 !/packages/*/lib/*.dll
+=======
+# Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
+bin
+obj
+
+# mstest test results
+TestResults
+>>>>>>> 786d872f17cf852680f246b6e1e773ee07d3ca37
