@@ -3,7 +3,7 @@ using System.Web.Http;
 
 namespace SchoolMap.Net.Controllers.Api
 {
-    public class ValuesController : ApiController
+    public class ValuesController : BaseApiController
     {
         // GET api/values
         public IEnumerable<string> Get()

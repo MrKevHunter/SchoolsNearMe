@@ -6,11 +6,9 @@ using System.Web.Mvc;
 
 namespace SchoolMap.Net.Controllers
 {
-    public class HomeController : BaseController
+    public class BaseController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        // todo: add in base bits to get RavenDB connection
+        // http://msdn.microsoft.com/en-us/magazine/hh547101.aspx
     }
 }
