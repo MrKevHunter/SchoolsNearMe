@@ -27,7 +27,8 @@ namespace DataImporter
             _store.Initialize();
 
             new GetUnlocatedSchools2().Execute(_store);
-
+            new UpdateUnlocatedSchoolsCommand().Execute(_store);
+            new GetUnlocatedSchools2().Execute(_store);
             _store.Dispose();
             //  QueryDb();
             // ImportDataFromCsv();
