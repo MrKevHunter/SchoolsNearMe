@@ -52,7 +52,14 @@ namespace SchoolMap.Net.DataImporter
 
         private void SetCoords(School school)
         {
-            school.Location = Geocode.GetCoordinates(school.GetAddress());
+            try
+            {
+                school.Location = Geocode.GetCoordinates(school.GetAddress());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to get address for {0}\nError was{1}",school,e);
+            }
         }
     }
 }

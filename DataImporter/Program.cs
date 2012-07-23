@@ -9,8 +9,8 @@ using Raven.Client.Embedded;
 using Raven.Client.Indexes;
 using SchoolMap.Net.DataImporter;
 using SchoolMap.Net.DataImporter.Commands;
-using SchoolMap.Net.DataImporter.Indexes;
 using SchoolMap.Net.Models;
+using SchoolMap.Net.Models.Indexes;
 
 namespace DataImporter
 {

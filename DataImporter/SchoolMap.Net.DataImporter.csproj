@@ -110,7 +110,6 @@
     <Compile Include="Commands\ImportFromCsvCommand.cs" />
     <Compile Include="Commands\ImportOfstedData.cs" />
     <Compile Include="Commands\IRavenCommand.cs" />
-    <Compile Include="Indexes\FindSchoolByName.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\UpdateUnlocatedSchoolsCommand.cs" />

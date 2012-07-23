@@ -1,0 +1,28 @@
+﻿@model dynamic
+<div id="rhsSearchBar">
+	<script type="text/javascript">
+		$(function () {
+			$("#slider").slider({
+				value:4,
+				min: 1,
+				max: 4,
+				step: 1,
+				slide: function (event, ui) {
+					$("#rating").val(ui.value);
+					getSchools(map.getBounds(), ui.value);
+				}
+			});
+			$("#rating").val( + $("#slider").slider("value"));
+		});
+	</script>
+	<div class="demo">
+		<p>
+			<label for="rating">
+				Minimum OFSTED rating:</label>
+			<input type="text" id="rating" style="border: 0; color: #f6931f; font-weight: bold;" />
+		</p>
+		<div id="slider">
+		</div>
+	</div>
+	<!-- End demo -->
+</div>

@@ -5,6 +5,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Raven.Client;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
+using SchoolMap.Net.Models.Indexes;
 
 namespace SchoolMap.Net
 {
@@ -15,20 +17,14 @@ namespace SchoolMap.Net
     {
         private const string RavenSessionKey = "RavenMVC.Session";
 
-        private static EmbeddableDocumentStore _store;
+        public static IDocumentStore Store;
+
+
 
         public WebApiApplication()
         {
-            BeginRequest += (sender, args) =>
-                            HttpContext.Current.Items[RavenSessionKey] = _store.OpenSession();
-            //Destroy the DocumentSession on EndRequest
-            EndRequest += (o, eventArgs) =>
-                              {
-                                  var disposable = HttpContext.Current.Items[RavenSessionKey] as IDisposable;
-                                  if (disposable != null)
-                                      disposable.Dispose();
-                              };
-        }
+            
+     }
 
         public static IDocumentSession CurrentSession
         {
@@ -40,12 +36,13 @@ namespace SchoolMap.Net
             // to plumb in mvc profiler when we get there
             //http: //ayende.com/blog/38913/ravendb-mvc-profiler-support
 
-            _store = new EmbeddableDocumentStore
+            Store = new EmbeddableDocumentStore
                          {
                              DataDirectory = @"C:\coding\SchoolMap.Net\SchoolMap.Net\App_Data\RavenDb"
                          };
-            _store.Initialize();
-
+            Store.Initialize();
+            IndexCreation.CreateIndexes(typeof(FindSchoolByName).Assembly, Store);
+            IndexCreation.CreateIndexes(typeof(FindSchoolByCoordsAndOfsted).Assembly, Store);
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
