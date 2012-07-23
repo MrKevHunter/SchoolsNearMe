@@ -18,9 +18,11 @@ namespace SchoolMap.Net.Models
 
         public Coordinate Location { get; set; }
 
+        public OfstedRating OfstedRating { get; set; }
+
         public override string ToString()
         {
-            return SchoolName + " " + Town;
+            return SchoolName + ", " + Town;
         }
 
         public string GetAddress()

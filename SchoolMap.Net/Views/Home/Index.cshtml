@@ -2,56 +2,61 @@
     <div class="content-wrapper">
         <div class="float-left">
             <p class="site-title">
-                <a href="~/">ASP.NET Web API</a></p>
+                <a href="~/">Schoolmap.Net</a></p>
         </div>
     </div>
 </header>
-<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>
-                    Welcome to ASP.NET Web API!</h1>
-                <h2>
-                    Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit <a href="http://go.microsoft.com/fwlink/?LinkID=238195"
-                    title="ASP.NET Web API Website">http://asp.net/web-api</a>. The page features
-                <mark>videos, tutorials, and samples</mark> to help you get the
-                most from ASP.NET Web API. If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">
-                    our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>
-            We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>
-                    Getting Started
-                </h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework. <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn
-                    more</a> </li>
-            <li class="two">
-                <h5>
-                    Add NuGet packages and jump start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools. <a href="http://go.microsoft.com/fwlink/?LinkId=245161">
-                    Learn more</a></li>
-            <li class="three">
-                <h5>
-                    Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications. <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn
-                    more</a></li>
-        </ol>
-    </section>
-</div>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDWVbVQzp7brCHZzomUT2hFsEjvAPK8xc8&sensor=false">
+</script>
+<script type="text/javascript">
+	function initialize() {
+		var mapOptions = {
+			center: new google.maps.LatLng(51.52269, -0.984406),
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+		google.maps.event.addListener(map, 'idle', function () {
+			getSchools(map.getBounds());
+		});
+
+	}
+
+	function getSchools(boundries) {
+		var northEast = boundries.getNorthEast();
+		var southWest = boundries.getSouthWest();
+		var northEastLat = northEast.lat();
+		var northEastLong = northEast.lng();
+		var southWestLat = southWest.lat();
+		var southWestLong = southWest.lng();
+
+		$.ajax({
+			type: 'post',
+			url: '/Home/GetSchools',
+			dataType: 'json',
+			data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong  }),
+			contentType: 'application/json; charset=utf-8',
+			success: function(l) {
+			//	alert("Done");
+			},
+			error : function() {
+			//	alert("Error");
+			}
+		});
+
+		/*jQuery.getJSON("/Home/GetSchools", data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong  }), 
+		function () {
+			
+		}).error(function () { alert("error"); });*/
+	}
+
+	{
+		
+	}
+</script>
+<body onload="initialize()">
+	<div id="map_canvas" style="width: 100%; height: 100%">
+	</div>
+</body>

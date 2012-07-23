@@ -25,32 +25,34 @@ namespace SchoolMap.Net.DataImporter
                     recordsBeingReturned = schools.Any();
                     foreach (var school in schools)
                     {
+                        if (!school.Location.NotSet()) continue;
+                        
+                        SetCoords(school);
                         if (school.Location.NotSet())
                         {
-                            Program.SetCoords(school);
-                            if (school.Location.NotSet())
-                            {
-                                fails++;
-                            }
-                            else
-                            {
-                                successes++;
-                            }
-
-                            using (var savingSession = store.OpenSession())
-                            {
-                                savingSession.Store(school);
-                                savingSession.SaveChanges();
-                            }
-                            Thread.Sleep(500);
+                            fails++;
+                        }
+                        else
+                        {
+                            successes++;
                         }
 
-
+                        using (var savingSession = store.OpenSession())
+                        {
+                            savingSession.Store(school);
+                            savingSession.SaveChanges();
+                        }
+                        Thread.Sleep(500);
                     }
                     position += batchSize;
                 }
             }
             Console.WriteLine("{0} successes\n{1} fails", successes, fails);
+        }
+
+        private void SetCoords(School school)
+        {
+            school.Location = Geocode.GetCoordinates(school.GetAddress());
         }
     }
 }

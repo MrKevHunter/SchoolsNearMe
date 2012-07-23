@@ -6,8 +6,10 @@ using System.Threading;
 using LumenWorks.Framework.IO.Csv;
 using Raven.Client;
 using Raven.Client.Embedded;
+using Raven.Client.Indexes;
 using SchoolMap.Net.DataImporter;
 using SchoolMap.Net.DataImporter.Commands;
+using SchoolMap.Net.DataImporter.Indexes;
 using SchoolMap.Net.Models;
 
 namespace DataImporter
@@ -25,6 +27,9 @@ namespace DataImporter
                              DataDirectory = _dataDirectory
                          };
             _store.Initialize();
+            IndexCreation.CreateIndexes(typeof(FindSchoolByName).Assembly, _store);
+          //  QueryDb(_store);
+            //new ImportOfstedData().Execute(_store);
 
             new GetUnlocatedSchools2().Execute(_store);
             new UpdateUnlocatedSchoolsCommand().Execute(_store);
@@ -39,13 +44,17 @@ namespace DataImporter
             Console.ReadLine();
         }
 
-        public static void SetCoords(School school)
+        private static void QueryDb(EmbeddableDocumentStore store)
         {
-            school.Location = Geocode.GetCoordinates(school.GetAddress());
+            IDocumentSession documentSession = store.OpenSession();
+            var schools = documentSession.Query<School>().Where(x => x.SchoolName == "Pangbourne Primary School").ToList();
+            foreach (var school in schools)
+            {
+                Console.WriteLine(school);
+            }
+
+   
+
         }
-
-
-
-        
     }
 }
