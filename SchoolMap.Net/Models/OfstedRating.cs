@@ -32,7 +32,7 @@ namespace SchoolMap.Net.Models
             set;
         }
 
-        public int LeaderhipAndManagement
+        public int LeadershipAndManagement
         {
             get;
             set;
