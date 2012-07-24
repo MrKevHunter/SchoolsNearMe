@@ -1,0 +1,20 @@
+{
+  "Name": "Auto/Schools/ByLocation_Latitude_RangeSortByLocation.Latitude",
+  "Map": "from doc in docs.Schools\r\nselect new { Location_Latitude = doc.Location.Latitude }",
+  "Maps": [
+    "from doc in docs.Schools\r\nselect new { Location_Latitude = doc.Location.Latitude }"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {
+    "Location.Latitude": "Double"
+  },
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Auto"
+}

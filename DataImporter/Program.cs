@@ -13,7 +13,7 @@ namespace DataImporter
     internal class Program
     {
         private const string GeocodePath = "C:\\temp\\geocode.xml";
-        private const string _dataDirectory = "../../../RavenDb";
+        
         private static DocumentStore _store;
 
         private static void Main(string[] args)
