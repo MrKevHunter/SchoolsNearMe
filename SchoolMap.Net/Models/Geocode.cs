@@ -1,7 +1,7 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Web;
-using System.Linq;
 
 namespace SchoolMap.Net.Models
 {
@@ -37,39 +37,38 @@ namespace SchoolMap.Net.Models
          * the fourth one is the longitude.
          */
             string[] geocodeInfo = client.DownloadString(uri).Split(',');
-            var resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
+            GeocodeResult resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
             while (resultFromGoogleCsv == GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo))
             {
-                address = string.Join(",",address.Split(',').Skip(1).ToArray());
+                address = string.Join(",", address.Split(',').Skip(1).ToArray());
                 uri = GetGeocodeUri(address);
                 geocodeInfo = client.DownloadString(uri).Split(',');
                 resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
             }
             return resultFromGoogleCsv;
-         
         }
     }
 
     public class GeocodeResult
     {
+        private GeocodeResult()
+        {
+        }
+
         public GeocodeReturnCode ReturnCode { get; set; }
         public decimal Accuracy { get; set; }
-        public Coordinate Location{ get; set; }
+        public Coordinate Location { get; set; }
 
         public static GeocodeResult CreateResultFromGoogleCsv(string[] geocodeInfo)
         {
-            GeocodeResult result = new GeocodeResult()
-                                       {
-                                           Location = new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),
-                                           ReturnCode = GetReturnCode(geocodeInfo[0]),
-                                           Accuracy =  Convert.ToDecimal(geocodeInfo[1])
-                                       };
+            var result = new GeocodeResult
+                             {
+                                 Location =
+                                     new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),
+                                 ReturnCode = GetReturnCode(geocodeInfo[0]),
+                                 Accuracy = Convert.ToDecimal(geocodeInfo[1])
+                             };
             return result;
-        }
-
-        private GeocodeResult()
-        {
-            
         }
 
         private static GeocodeReturnCode GetReturnCode(string returnCode)
@@ -87,12 +86,14 @@ namespace SchoolMap.Net.Models
                 return GeocodeReturnCode.TooManyAttempts;
             }
             return GeocodeReturnCode.Unknown;
-
         }
     }
 
     public enum GeocodeReturnCode
     {
-        Success,TooManyAttempts,UnknownAddress,Unknown
+        Success,
+        TooManyAttempts,
+        UnknownAddress,
+        Unknown
     }
 }
