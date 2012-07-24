@@ -35,12 +35,11 @@ namespace SchoolMap.Net.DataImporter
                         else
                         {
                             successes++;
-                        }
-
-                        using (var savingSession = store.OpenSession())
-                        {
-                            savingSession.Store(school);
-                            savingSession.SaveChanges();
+                            using (var savingSession = store.OpenSession())
+                            {
+                                savingSession.Store(school);
+                                savingSession.SaveChanges();
+                            }
                         }
                         Thread.Sleep(500);
                     }
@@ -54,7 +53,8 @@ namespace SchoolMap.Net.DataImporter
         {
             try
             {
-                school.Location = Geocode.GetCoordinates(school.GetAddress());
+                var geocodeResult = Geocode.GetCoordinates(school.GetAddress());
+                school.Location = geocodeResult.Location;
             }
             catch (Exception e)
             {

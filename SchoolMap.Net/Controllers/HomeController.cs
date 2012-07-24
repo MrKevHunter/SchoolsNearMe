@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using SchoolMap.Net.Models;
-using SchoolMap.Net.Models.Indexes;
 
 namespace SchoolMap.Net.Controllers
 {
