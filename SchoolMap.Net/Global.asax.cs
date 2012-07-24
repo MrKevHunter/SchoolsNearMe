@@ -36,10 +36,7 @@ namespace SchoolMap.Net
             // to plumb in mvc profiler when we get there
             //http: //ayende.com/blog/38913/ravendb-mvc-profiler-support
 
-            Store = new EmbeddableDocumentStore
-                         {
-                             DataDirectory = @"C:\coding\SchoolMap.Net\SchoolMap.Net\App_Data\RavenDb"
-                         };
+            Store = new EmbeddableDocumentStore { ConnectionStringName = "RavenDB" };
             Store.Initialize();
             IndexCreation.CreateIndexes(typeof(FindSchoolByName).Assembly, Store);
             IndexCreation.CreateIndexes(typeof(FindSchoolByCoordsAndOfsted).Assembly, Store);
