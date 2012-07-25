@@ -16,6 +16,7 @@ namespace SchoolMap.Net.Controllers
 
         public JsonResult GetSchools(decimal northEastLat, decimal northEastLong, decimal southWestLat, decimal southWestLong, int ofstedRating)
         {
+
             Expression<Func<School, bool>> schoolsInLocationWithOfstedAndMiniumum = x => 
                 x.OfstedRating != null 
                 && x.OfstedRating.OverallEffectiveness <= ofstedRating 
@@ -27,6 +28,7 @@ namespace SchoolMap.Net.Controllers
             var schools = RavenSession.Query<School>()
                 .Customize(x=>x.WaitForNonStaleResultsAsOfNow())
                 .Where(schoolsInLocationWithOfstedAndMiniumum)
+				.Take(100000)
                 .ToList();
 
 

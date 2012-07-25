@@ -70,7 +70,9 @@
 					// add the marker itself      
 					var marker = new google.maps.Marker({
 						position: point,
-						map: map
+						map: map,
+						draggable: false,
+						animation: google.maps.Animation.DROP
 					});
 					markersArray.push(marker);
 						var infoWindow = new google.maps.InfoWindow();
