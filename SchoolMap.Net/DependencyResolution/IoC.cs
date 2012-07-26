@@ -1,5 +1,7 @@
+using SchoolMap.Net.Services;
 using StructureMap;
-namespace SchoolMap.Net {
+
+namespace SchoolMap.Net.DependencyResolution {
     public static class IoC {
         public static IContainer Initialize() {
             ObjectFactory.Initialize(x =>
@@ -9,7 +11,7 @@ namespace SchoolMap.Net {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
                                     });
-            //                x.For<IExample>().Use<Example>();
+                            x.For<ILocationService>().Use<HostIpLocationService>();
                         });
             return ObjectFactory.Container;
         }
