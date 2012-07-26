@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="BingGeoCoder.cs" />
     <Compile Include="BingXmlFormatter.cs" />
+    <Compile Include="Commands\CountUncodedSchools.cs" />
     <Compile Include="Commands\GeocodeWithBingCommand.cs" />
     <Compile Include="Commands\GetUnlocatedSchooldsCommand.cs" />
     <Compile Include="Commands\GetUnlocatedSchools2.cs" />
@@ -112,6 +113,8 @@
     <Compile Include="Commands\IRavenCommand.cs" />
     <Compile Include="Commands\RavenEach.cs" />
     <Compile Include="Commands\RemoveOfstedRatingCommand.cs" />
+    <Compile Include="Commands\StartIndexing.cs" />
+    <Compile Include="Commands\StopIndexing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\UpdateUnlocatedSchoolsCommand.cs" />

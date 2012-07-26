@@ -20,6 +20,12 @@ namespace SchoolMap.Net.Models
 
         public OfstedRating OfstedRating { get; set; }
 
+        public bool IsSchoolClosed
+        {
+            get;
+            set;
+        }
+
         public override string ToString()
         {
             return SchoolName + ", " + Town;

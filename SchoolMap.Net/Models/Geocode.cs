@@ -38,9 +38,13 @@ namespace SchoolMap.Net.Models
          */
             string[] geocodeInfo = client.DownloadString(uri).Split(',');
             GeocodeResult resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
-            while (resultFromGoogleCsv == GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo))
+            while (resultFromGoogleCsv.ReturnCode == GeocodeReturnCode.UnknownAddress)
             {
                 address = string.Join(",", address.Split(',').Skip(1).ToArray());
+                if (string.IsNullOrWhiteSpace(address))
+                {
+                    break;
+                }
                 uri = GetGeocodeUri(address);
                 geocodeInfo = client.DownloadString(uri).Split(',');
                 resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);

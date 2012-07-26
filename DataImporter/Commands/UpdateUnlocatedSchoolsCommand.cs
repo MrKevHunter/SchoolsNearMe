@@ -8,13 +8,11 @@ namespace SchoolMap.Net.DataImporter.Commands
 {
     internal class UpdateUnlocatedSchoolsCommand : IRavenCommand
     {
-        private DocumentStore _store;
 
         #region IRavenCommand Members
 
         public void Execute(DocumentStore store)
         {
-            _store = store;
             new RavenEach().RavenForEach<School>(store, UpdateUnlocatedSchools);
         }
 
@@ -22,17 +20,9 @@ namespace SchoolMap.Net.DataImporter.Commands
 
         private void UpdateUnlocatedSchools(School school)
         {
-            if (!school.Location.NotSet())
+            if (school.Location.NotSet() && !string.IsNullOrWhiteSpace(school.PostCode))
             {
                 SetCoords(school);
-                if (!school.Location.NotSet())
-                {
-                    using (IDocumentSession savingSession = _store.OpenSession())
-                    {
-                        savingSession.Store(school);
-                        savingSession.SaveChanges();
-                    }
-                }
                 Thread.Sleep(500);
             }
         }
@@ -43,6 +33,10 @@ namespace SchoolMap.Net.DataImporter.Commands
             {
                 GeocodeResult geocodeResult = Geocode.GetCoordinates(school.GetAddress());
                 school.Location = geocodeResult.Location;
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine("Unable to get address for {0}\nThere was a format exception", school);
             }
             catch (Exception e)
             {
