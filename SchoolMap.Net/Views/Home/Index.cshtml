@@ -9,38 +9,63 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDWVbVQzp7brCHZzomUT2hFsEjvAPK8xc8&sensor=false">
 </script>
 <script type="text/javascript">
-	var markersArray = [];
-	var map; 
-	function initialize() {
-		var mapOptions = {
-			center: new google.maps.LatLng(51.52269, -0.984406),
-			zoom: 14,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-		map = new google.maps.Map(document.getElementById("map_canvas"),
+    var markersArray = [];
+    var map;
+
+    function displayPosition(position) {
+        var mapOptions = {
+            //center: new google.maps.LatLng(51.52269, -0.984406),
+            center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"),
 			mapOptions);
 
-		google.maps.event.addListener(map, 'idle', function () {
-			getSchools(map.getBounds(),$("#slider").slider("value"));
-		});
+        google.maps.event.addListener(map, 'idle', function () {
+            getSchools(map.getBounds(), $("#slider").slider("value"));
+        });
+    }
 
-	}
+    function displayError(error) {
+        var errors = {
+            1: 'Permission denied',
+            2: 'Position unavailable',
+            3: 'Request timeout'
+        };
+        alert("Error: " + errors[error.code]);
+    }
 
-	google.maps.Map.prototype.clearOverlays = function() {
-		if (markersArray) {
-			for (var i = 0; i < markersArray.length; i++) {
-				markersArray[i].setMap(null);
-			}
-		}
-	};
+    function initialize() {
+        if (navigator.geolocation) {
+            var timeoutVal = 10 * 1000 * 1000;
+            navigator.geolocation.getCurrentPosition(
+	            displayPosition,
+	            displayError,
+	            { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
+	        );
+        } else {
+            var defaultCoords = { latitude: 51.52269, longitude: -0.984406 };
+            var defaultPosition = { coords: defaultCoords };
+            displayPosition(defaultPosition);
+        }
+    }
 
-	function clearOverlays() {
-		if (markersArray) {
-			for (var i = 0; i < markersArray.length; i++) {
-				markersArray[i].setMap(null);
-			}
-		}
-	}
+    google.maps.Map.prototype.clearOverlays = function () {
+        if (markersArray) {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+        }
+    };
+
+    function clearOverlays() {
+        if (markersArray) {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+        }
+    }
 
 
 	function getSchools(boundries, slideValue) {

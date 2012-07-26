@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
+    <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Api\ValuesController.cs" />
@@ -192,6 +193,8 @@
     <Compile Include="Models\School.cs" />
     <Compile Include="Models\SchoolType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HostIpLocationService.cs" />
+    <Compile Include="Services\ILocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\RavenDB.Embedded.1.2.2037-Unstable\tools\Raven.Studio.xap">

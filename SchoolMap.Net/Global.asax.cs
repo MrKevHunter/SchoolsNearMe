@@ -4,7 +4,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Raven.Client;
 using Raven.Client.Document;
-using Raven.Client.Embedded;
 using Raven.Client.Indexes;
 using SchoolMap.Net.Models.Indexes;
 
@@ -23,15 +22,9 @@ namespace SchoolMap.Net
 
         protected void Application_Start()
         {
-            if (false)
-            {
-                Store = new EmbeddableDocumentStore {ConnectionStringName = "RavenDB"};
-            }
-            else
-            {
-                Store = new DocumentStore { ConnectionStringName = "RavenDB" };   
-            }
+            Store = new DocumentStore { ConnectionStringName = "RavenDB" };   
             Store.Initialize();
+
             IndexCreation.CreateIndexes(typeof(FindSchoolByName).Assembly, Store);
             IndexCreation.CreateIndexes(typeof(FindSchoolByCoordsAndOfsted).Assembly, Store);
             AreaRegistration.RegisterAllAreas();
