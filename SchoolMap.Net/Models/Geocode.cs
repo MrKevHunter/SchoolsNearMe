@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Web;
 
@@ -25,7 +26,7 @@ namespace SchoolMap.Net.Models
         /// </remarks>
         /// </param>
         /// <returns>A spatial coordinate that contains the latitude and longitude of the address.</returns>
-        public static Coordinate GetCoordinates(string address)
+        public static GeocodeResult GetCoordinates(string address)
         {
             var client = new WebClient();
             Uri uri = GetGeocodeUri(address);
@@ -36,9 +37,63 @@ namespace SchoolMap.Net.Models
          * the fourth one is the longitude.
          */
             string[] geocodeInfo = client.DownloadString(uri).Split(',');
-            Console.WriteLine(geocodeInfo[0]);
-
-            return new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3]));
+            GeocodeResult resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
+            while (resultFromGoogleCsv == GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo))
+            {
+                address = string.Join(",", address.Split(',').Skip(1).ToArray());
+                uri = GetGeocodeUri(address);
+                geocodeInfo = client.DownloadString(uri).Split(',');
+                resultFromGoogleCsv = GeocodeResult.CreateResultFromGoogleCsv(geocodeInfo);
+            }
+            return resultFromGoogleCsv;
         }
+    }
+
+    public class GeocodeResult
+    {
+        private GeocodeResult()
+        {
+        }
+
+        public GeocodeReturnCode ReturnCode { get; set; }
+        public decimal Accuracy { get; set; }
+        public Coordinate Location { get; set; }
+
+        public static GeocodeResult CreateResultFromGoogleCsv(string[] geocodeInfo)
+        {
+            var result = new GeocodeResult
+                             {
+                                 Location =
+                                     new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),
+                                 ReturnCode = GetReturnCode(geocodeInfo[0]),
+                                 Accuracy = Convert.ToDecimal(geocodeInfo[1])
+                             };
+            return result;
+        }
+
+        private static GeocodeReturnCode GetReturnCode(string returnCode)
+        {
+            if (returnCode == "200")
+            {
+                return GeocodeReturnCode.Success;
+            }
+            if (returnCode == "602")
+            {
+                return GeocodeReturnCode.UnknownAddress;
+            }
+            if (returnCode == "620")
+            {
+                return GeocodeReturnCode.TooManyAttempts;
+            }
+            return GeocodeReturnCode.Unknown;
+        }
+    }
+
+    public enum GeocodeReturnCode
+    {
+        Success,
+        TooManyAttempts,
+        UnknownAddress,
+        Unknown
     }
 }

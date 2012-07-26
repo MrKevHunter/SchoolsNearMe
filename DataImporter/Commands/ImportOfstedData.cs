@@ -25,7 +25,7 @@ namespace SchoolMap.Net.DataImporter.Commands
                 rating.HowWellLearnerAchieve = Convert.ToInt32(line[15]);
                 rating.PupilBehaviorAndSafety = Convert.ToInt32(line[16]);
                 rating.QualityOfTeaching = Convert.ToInt32(line[17]);
-                rating.LeaderhipAndManagement = Convert.ToInt32(line[18]);
+                rating.LeadershipAndManagement = Convert.ToInt32(line[18]);
                 schoolRatings.Add(line[1], rating);
 
             }

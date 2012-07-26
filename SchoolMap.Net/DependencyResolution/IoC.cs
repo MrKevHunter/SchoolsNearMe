@@ -1,4 +1,3 @@
-using SchoolMap.Net.Services;
 using StructureMap;
 
 namespace SchoolMap.Net.DependencyResolution {
@@ -11,7 +10,6 @@ namespace SchoolMap.Net.DependencyResolution {
                                         scan.TheCallingAssembly();
                                         scan.WithDefaultConventions();
                                     });
-                            x.For<ILocationService>().Use<HostIpLocationService>();
                         });
             return ObjectFactory.Container;
         }
