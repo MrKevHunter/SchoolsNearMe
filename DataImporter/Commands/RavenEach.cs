@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Raven.Client;
@@ -10,10 +11,12 @@ namespace SchoolMap.Net.DataImporter.Commands
     {
         public void RavenForEach<T>(DocumentStore store, Action<T> action)
         {
+            int counter = 0;
             var sw = Stopwatch.StartNew();
             int position = 0;
-            const int batchSize = 120;
+            const int batchSize = 1000;
             bool recordsBeingReturned = true;
+            var batch = new List<T>();
             while (recordsBeingReturned)
             {
                 using (IDocumentSession session = store.OpenSession())
@@ -22,15 +25,20 @@ namespace SchoolMap.Net.DataImporter.Commands
                     recordsBeingReturned = items.Any();
                     foreach (T item in items)
                     {
+                        Console.Write("\rProcessing Record :{0}          ", ++counter);
                         action(item);
 
-                        using (IDocumentSession savingSession = store.OpenSession())
+                        if (batch.Count == 30)
                         {
-                            savingSession.Store(item);
+                            var savingSession = store.OpenSession();
+                            batch.ForEach(x => savingSession.Store(x));
                             savingSession.SaveChanges();
+                            batch.Clear();
                         }
+                        batch.Add(item);
                     }
                     position += batchSize;
+
                 }
             }
             sw.Stop();

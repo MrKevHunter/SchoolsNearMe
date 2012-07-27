@@ -12,13 +12,21 @@ namespace SchoolMap.Net.Models
 
         public string Town { get; set; }
 
-        public string SchoolType { get; set; }
+        public TypeOfEstablishment TypeOfEstablishment { get; set; }
 
         public string Website { get; set; }
 
         public Coordinate Location { get; set; }
 
         public OfstedRating OfstedRating { get; set; }
+
+        public bool IsSchoolClosed
+        {
+            get;
+            set;
+        }
+
+        public string SchoolType { get; set; }
 
         public override string ToString()
         {

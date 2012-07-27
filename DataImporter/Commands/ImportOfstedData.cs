@@ -15,7 +15,7 @@ namespace SchoolMap.Net.DataImporter.Commands
             const string importCsvPath = @"C:\coding\SchoolMap.Net\Collateral\Ofsted_Most_Recent_31_Mar_2012_(Provisional).csv";
                       
             var csvReader = new CsvReader(new StreamReader(File.OpenRead(importCsvPath)), true);
-            Dictionary<string,OfstedRating> schoolRatings = new Dictionary<string, OfstedRating>();
+            var schoolRatings = new Dictionary<string, OfstedRating>();
             foreach (var line in csvReader)
             {
                 OfstedRating rating =new OfstedRating();
@@ -29,6 +29,9 @@ namespace SchoolMap.Net.DataImporter.Commands
                 schoolRatings.Add(line[1], rating);
 
             }
+            Console.WriteLine("Imported ofsted data");
+            decimal total = schoolRatings.Count;
+            decimal position = 0;
             foreach (var ofstedRating in schoolRatings)
             {
                 using (var session  = store.OpenSession())
@@ -41,9 +44,9 @@ namespace SchoolMap.Net.DataImporter.Commands
                         session.SaveChanges();
                     }
                 }
+                Console.Write("\r{0}%    ", Math.Round((++position/total)*100, 2));
             }
 
-            Console.WriteLine(schoolRatings.Count);
         }
     }
 }

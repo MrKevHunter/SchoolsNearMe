@@ -1,0 +1,22 @@
+{
+  "Name": "Auto/Schools/BygmGfDMGZKwnTg8SL8PLjz4uG+bjTLtxnQEYOo4Supvk=",
+  "Map": "from doc in docs.Schools\r\nselect new { OfstedRating_OverallEffectiveness = doc.OfstedRating.OverallEffectiveness, Location_Longitude = doc.Location.Longitude, Location_Latitude = doc.Location.Latitude, OfstedRating = doc.OfstedRating }",
+  "Maps": [
+    "from doc in docs.Schools\r\nselect new { OfstedRating_OverallEffectiveness = doc.OfstedRating.OverallEffectiveness, Location_Longitude = doc.Location.Longitude, Location_Latitude = doc.Location.Latitude, OfstedRating = doc.OfstedRating }"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {
+    "OfstedRating.OverallEffectiveness": "Int",
+    "Location.Latitude": "Double",
+    "Location.Longitude": "Double"
+  },
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Auto"
+}

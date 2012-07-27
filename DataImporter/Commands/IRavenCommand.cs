@@ -1,6 +1,6 @@
 ﻿using Raven.Client.Document;
 
-namespace SchoolMap.Net.DataImporter
+namespace SchoolMap.Net.DataImporter.Commands
 {
     public interface IRavenCommand
     {

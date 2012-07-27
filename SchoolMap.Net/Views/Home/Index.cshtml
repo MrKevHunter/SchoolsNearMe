@@ -22,10 +22,16 @@
         map = new google.maps.Map(document.getElementById("map_canvas"),
 			mapOptions);
 
+<<<<<<< HEAD
         google.maps.event.addListener(map, 'idle', function () {
             getSchools(map.getBounds(), $("#slider").slider("value"));
         });
     }
+=======
+		google.maps.event.addListener(map, 'idle', function () {
+			getSchools(map.getBounds(),$("#overallOfstedRatingSlider").slider("value"));
+		});
+>>>>>>> AdditonalSchools
 
     function displayError(error) {
         var errors = {
