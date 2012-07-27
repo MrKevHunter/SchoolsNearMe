@@ -1,12 +1,10 @@
 ﻿using System;
 using Raven.Client.Document;
-using Raven.Client.Embedded;
 using Raven.Client.Indexes;
-using SchoolMap.Net.DataImporter;
 using SchoolMap.Net.DataImporter.Commands;
 using SchoolMap.Net.Models.Indexes;
 
-namespace DataImporter
+namespace SchoolMap.Net.DataImporter
 {
     internal class Program
     {
@@ -22,7 +20,9 @@ namespace DataImporter
                          };
             _store.Initialize();
             IndexCreation.CreateIndexes(typeof(FindSchoolByName).Assembly, _store);
+            new StopIndexing().Execute(_store);
             new ImportFromCsvCommand().Execute(_store);
+            new StartIndexing().Execute(_store);
             _store.Dispose();
 
             Console.ReadLine();

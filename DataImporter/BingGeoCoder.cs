@@ -9,12 +9,6 @@ namespace SchoolMap.Net.DataImporter
 {
     //A summary of status information returned in the response when you check 
     // job status. 
-    internal class DownloadDetails
-    {
-        public string jobStatus { get; set; }
-        public string suceededlink { get; set; }
-        public string failedlink { get; set; }
-    }
 
     public class BingGeoCoder
     {

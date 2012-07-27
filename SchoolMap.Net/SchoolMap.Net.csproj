@@ -185,11 +185,14 @@
     </Compile>
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Geocode.cs" />
+    <Compile Include="Models\GeocodeResult.cs" />
+    <Compile Include="Models\GeocodeReturnCode.cs" />
+    <Compile Include="Models\Indexes\FindSchoolByCoordsAndOfsted.cs" />
     <Compile Include="Models\Indexes\FindSchoolByName.cs" />
     <Compile Include="Models\ISpatialCoordinate.cs" />
     <Compile Include="Models\OfstedRating.cs" />
     <Compile Include="Models\School.cs" />
-    <Compile Include="Models\SchoolType.cs" />
+    <Compile Include="Models\TypeOfEstablishment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

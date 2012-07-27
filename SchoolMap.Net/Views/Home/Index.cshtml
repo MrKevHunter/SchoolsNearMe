@@ -21,7 +21,7 @@
 			mapOptions);
 
 		google.maps.event.addListener(map, 'idle', function () {
-			getSchools(map.getBounds(),$("#slider").slider("value"));
+			getSchools(map.getBounds(),$("#overallOfstedRatingSlider").slider("value"));
 		});
 
 	}

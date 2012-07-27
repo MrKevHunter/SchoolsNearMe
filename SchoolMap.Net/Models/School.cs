@@ -12,7 +12,7 @@ namespace SchoolMap.Net.Models
 
         public string Town { get; set; }
 
-        public string SchoolType { get; set; }
+        public TypeOfEstablishment TypeOfEstablishment { get; set; }
 
         public string Website { get; set; }
 
@@ -25,6 +25,8 @@ namespace SchoolMap.Net.Models
             get;
             set;
         }
+
+        public string SchoolType { get; set; }
 
         public override string ToString()
         {

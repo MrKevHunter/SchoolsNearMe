@@ -115,6 +115,7 @@
     <Compile Include="Commands\RemoveOfstedRatingCommand.cs" />
     <Compile Include="Commands\StartIndexing.cs" />
     <Compile Include="Commands\StopIndexing.cs" />
+    <Compile Include="DownloadDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\UpdateUnlocatedSchoolsCommand.cs" />
