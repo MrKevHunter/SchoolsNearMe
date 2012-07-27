@@ -115,10 +115,11 @@
 		});
 	}
 
+	$().ready(function (parameters) {
+		initialize();
+	});
 </script>
-<body onload="initialize()">
     @Html.Partial("SearchSidebar")
     <div id="map_canvas" style="">
     </div>
 	
-</body>
