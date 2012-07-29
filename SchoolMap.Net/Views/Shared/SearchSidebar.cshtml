@@ -12,6 +12,8 @@
 				}
 			});
 			$("#rating").val(+$("#overallOfstedRatingSlider").slider("value"));
+
+			$("#establishmentType").chosen();
 		});
 	</script>
 	<p>
@@ -21,4 +23,14 @@
 	</p>
 	<div id="overallOfstedRatingSlider">
 	</div>
+    <div id="divEstablishmentType">
+        		<label for="establishmentType">
+			Establishment Type:</label>
+        <select multiple="multiple"  id="establishmentType" style="width: 300px">
+            <option value="Nursery">Nursery</option>
+            <option value="Primary">Primary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="Sixteen Plus">Sixteen Plus</option>
+        </select>
+    </div>
 </div>

@@ -7,7 +7,7 @@ namespace SchoolMap.Net.DependencyResolution
     /// Thanks to https://github.com/kenstone/WebApiStructureMapDemo / http://notebookheavy.com/2012/06/25/setup-structuremap-with-asp-net-web-api-release-candidate/
     /// for guiding with the setting up of StrutureMap with web api
     /// </summary>
-    public class SmDependencyResolver : StructureMapScope, IDependencyResolver
+    public class SmDependencyResolver : StructureMapScope, IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
         private IContainer _container;
 
@@ -17,10 +17,16 @@ namespace SchoolMap.Net.DependencyResolution
             _container = container;
         }
 
+        #region IDependencyResolver Members
+
         public IDependencyScope BeginScope()
         {
             _container = IoC.Initialize();
             return new StructureMapScope(_container);
         }
+
+        #endregion
     }
+
+
 }

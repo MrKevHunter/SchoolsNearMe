@@ -13,6 +13,9 @@ namespace SchoolMap.Net
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chosen").Include(
+            "~/Scripts/chosen.jquery.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
@@ -35,6 +38,7 @@ namespace SchoolMap.Net
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css",
+                        "~/Content/chosen.css",
                         "~/Content/Custom.css"));
         }
     }

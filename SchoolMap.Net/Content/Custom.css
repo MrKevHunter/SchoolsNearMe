@@ -1,6 +1,11 @@
 ﻿/* File Created: July 23, 2012 */
 #rhsSearchBar {
-	width: 15%;
+	width: 25%;
 	float: right;
 	padding: 20px;
+}
+
+#map_canvas {
+	height: 100%;
+	width: 75%;
 }
