@@ -46,15 +46,13 @@ function initialize() {
         });
 
         ajax.done(function(result) {
-            alert('latitude => ' + result.Latitude);
-            alert('longitude => ' + result.Longitude);
             var defaultCoords = { latitude: result.Latitude, longitude: result.Longitude };
             var defaultPosition = { coords: defaultCoords };
             displayPosition(defaultPosition);   
         });
 
         ajax.fail(function () {
-            alert('Unfortunately your location was unable to be determined :-(');
+            alert('Unfortunately your location was unable to be determined; using default location');
             defaultLocation();
         });
 
