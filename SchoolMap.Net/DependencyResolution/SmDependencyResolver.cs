@@ -17,16 +17,10 @@ namespace SchoolMap.Net.DependencyResolution
             _container = container;
         }
 
-        #region IDependencyResolver Members
-
         public IDependencyScope BeginScope()
         {
             _container = IoC.Initialize();
             return new StructureMapScope(_container);
         }
-
-        #endregion
     }
-
-
 }

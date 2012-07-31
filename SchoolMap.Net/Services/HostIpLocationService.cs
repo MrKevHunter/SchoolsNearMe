@@ -11,13 +11,7 @@ namespace SchoolMap.Net.Services
     {
         private static Dictionary<string, Coordinate> cachedIps = new Dictionary<string, Coordinate>();
 
-        private string GetLocationInformation(string ipAddress)
-        {
-            string result = string.Empty;
-            if (ipAddress == "127.0.0.1")
-            {
-                result =
-                @"<?xml version=""1.0"" encoding=""ISO-8859-1"" ?>
+        private const string DefaultLocationXml = @"<?xml version=""1.0"" encoding=""ISO-8859-1"" ?>
                     <HostipLookupResultSet version=""1.0.0"" xmlns=""http://www.hostip.info/api"" xmlns:gml=""http://www.opengis.net/gml"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://www.hostip.info/api/hostip-1.0.0.xsd"">
                      <gml:description>This is the Hostip Lookup Service</gml:description>
                      <gml:name>hostip</gml:name>
@@ -33,13 +27,20 @@ namespace SchoolMap.Net.Services
                          <ipLocation>
                             <gml:PointProperty>
                              <gml:Point srsName=""http://www.opengis.net/gml/srs/epsg.xml#4326"">
-                                <gml:coordinates>-88.4588,41.7696</gml:coordinates>
+                                <gml:coordinates>0,0</gml:coordinates>
                              </gml:Point>
                             </gml:PointProperty>
                          </ipLocation>
                         </Hostip>
                      </gml:featureMember>
                     </HostipLookupResultSet>";
+
+        private string GetLocationInformation(string ipAddress)
+        {
+            string result = string.Empty;
+            if (ipAddress == "127.0.0.1")
+            {
+                result = DefaultLocationXml;
             }
             else
             {
@@ -63,30 +64,7 @@ namespace SchoolMap.Net.Services
 
                 if (issue)
                 {
-                    result =
-                        @"<?xml version=""1.0"" encoding=""ISO-8859-1"" ?>
-                        <HostipLookupResultSet version=""1.0.0"" xmlns=""http://www.hostip.info/api"" xmlns:gml=""http://www.opengis.net/gml"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xsi:schemaLocation=""http://www.hostip.info/api/hostip-1.0.0.xsd"">
-                         <gml:description>This is the Hostip Lookup Service</gml:description>
-                         <gml:name>hostip</gml:name>
-                         <gml:boundedBy>
-                            <gml:Null>inapplicable</gml:Null>
-                         </gml:boundedBy>
-                         <gml:featureMember>
-                            <Hostip>
-                             <gml:name>Sugar Grove, IL</gml:name>
-                             <countryName>UNITED STATES</countryName>
-                             <countryAbbrev>US</countryAbbrev>
-                             <!-- Co-ordinates are available as lng,lat -->
-                             <ipLocation>
-                                <gml:PointProperty>
-                                 <gml:Point srsName=""http://www.opengis.net/gml/srs/epsg.xml#4326"">
-                                    <gml:coordinates>-88.4588,41.7696</gml:coordinates>
-                                 </gml:Point>
-                                </gml:PointProperty>
-                             </ipLocation>
-                            </Hostip>
-                         </gml:featureMember>
-                        </HostipLookupResultSet>";
+                    result = DefaultLocationXml;
                 }
             }
 

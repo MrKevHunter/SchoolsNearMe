@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Web;
 using SchoolMap.Net.Models;
 using SchoolMap.Net.Services;
@@ -14,7 +15,7 @@ namespace SchoolMap.Net.Controllers.Api
             LocationService = locationService;
         }
 
-        public Coordinate GetLocation()
+        public Coordinate Get()
         {
             string ipaddress = GetIP4Address();
             var parsed = IPAddress.Parse(ipaddress);
@@ -27,6 +28,28 @@ namespace SchoolMap.Net.Controllers.Api
 
             return coordinates;
         }
+
+        ///// <summary>
+        ///// http://stackoverflow.com/questions/1069103/how-to-get-my-own-ip-address-in-c
+        ///// </summary>
+        ///// <returns></returns>
+        //private string GetPublicIp()
+        //{
+        //    string ipaddress = "";
+        //    WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+        //    using (WebResponse response = request.GetResponse())
+        //    using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+        //    {
+        //        ipaddress = stream.ReadToEnd();
+        //    }
+
+        //    //Search for the ip in the html
+        //    int first = ipaddress.IndexOf("Address: ") + 9;
+        //    int last = ipaddress.LastIndexOf("</body>");
+        //    ipaddress = ipaddress.Substring(first, last - first);
+
+        //    return ipaddress;
+        //}
 
         /// <summary>
         /// http://www.aspnet-answers.com/microsoft/ASP-NET/30078410/request-object.aspx

@@ -29,7 +29,7 @@ function displayError(error) {
 function initialize() {
     // this determines if its available or if its defined;
     // http://html5doctor.com/finding-your-position-with-geolocation/
-    if (navigator.geolocation) {
+    if (false) {
         var timeoutVal = 10 * 1000 * 1000;
         navigator.geolocation.getCurrentPosition(
 	            displayPosition,
@@ -96,9 +96,9 @@ function getSchools() {
 	var items = $("#establishmentType").val();
 	$.ajax({
 		type: 'post',
-		url: '/Home/GetSchools',
+		url: '/api/schools',
 		dataType: 'json',
-		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating,schoolTypes: items }),
+		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
 		contentType: 'application/json; charset=utf-8',
 		success: function (result) {
 			map.clearOverlays();
@@ -126,8 +126,8 @@ function getSchools() {
 				});
 			});
 		},
-		error: function () {
-			alert("Error");
+		error: function (jqXHR, textStatus, errorThrown) {
+		    alert(jqXHR.responseText);
 		}
 	});
 }
