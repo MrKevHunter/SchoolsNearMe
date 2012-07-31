@@ -29,7 +29,7 @@ function displayError(error) {
 function initialize() {
     // this determines if its available or if its defined;
     // http://html5doctor.com/finding-your-position-with-geolocation/
-    if (false) {
+    if (navigator.geolocation) {
         var timeoutVal = 10 * 1000 * 1000;
         navigator.geolocation.getCurrentPosition(
 	            displayPosition,
