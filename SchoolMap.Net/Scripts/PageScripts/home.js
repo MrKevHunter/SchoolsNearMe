@@ -102,8 +102,6 @@ function getSchools() {
 		contentType: 'application/json; charset=utf-8',
 		success: function (result) {
 			map.clearOverlays();
-
-			result = jQuery.parseJSON(result);
 			map.placeMarkers = $.each(result, function (i, item) {
 				var lat = item.Location.Latitude;
 				var lng = item.Location.Longitude;

@@ -14,8 +14,6 @@ namespace SchoolMap.Net.Controllers.Api
             SchoolQuery = schoolQuery;
         }
 
-        //public IEnumerable<School> Get(double northEastLat = 51.54508757438882, double northEastLong = -0.9241957720337268,
-        //    double southWestLat = 51.512675601327466, double southWestLong = -1.0466761644897815, int ofstedRating = 4, List<string> schoolTypes = null)
         public IEnumerable<School> Post(SchoolSearchParameters parameters) 
         {
             IEnumerable<School> schools = SchoolQuery.GetSchools(new MapBoundries(parameters.NorthEastLat, parameters.NorthEastLong, parameters.SouthWestLat, parameters.SouthWestLong),
