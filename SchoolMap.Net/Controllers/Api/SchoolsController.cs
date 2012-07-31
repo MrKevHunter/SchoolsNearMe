@@ -19,7 +19,7 @@ namespace SchoolMap.Net.Controllers.Api
         public IEnumerable<School> Post(SchoolSearchParameters parameters) 
         {
             IEnumerable<School> schools = SchoolQuery.GetSchools(new MapBoundries(parameters.NorthEastLat, parameters.NorthEastLong, parameters.SouthWestLat, parameters.SouthWestLong),
-                                                        RavenSession, parameters.OfsteadRating, parameters.SchoolTypes);
+                                                        RavenSession, parameters.OfstedRating, parameters.SchoolTypes);
 
             return schools.ToList();
         }
@@ -36,7 +36,7 @@ namespace SchoolMap.Net.Controllers.Api
         public decimal NorthEastLong { get; set; }
         public decimal SouthWestLat { get; set; }
         public decimal SouthWestLong { get; set; }
-        public int OfsteadRating { get; set; }
+        public int OfstedRating { get; set; }
         public List<string> SchoolTypes { get; set; } 
     }
 }
