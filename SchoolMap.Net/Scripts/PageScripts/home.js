@@ -78,17 +78,18 @@ google.maps.Map.prototype.clearOverlays = function () {
 function clearOverlays() {
 	if (markersArray) {
 		for (var i = 0; i < markersArray.length; i++) {
-			
+			markersArray[i].setMap(null);
 		}
 	}
 }
 
 function clearOverlays(markers) {
 	if (markers) {
-		for (var i = 0; i < markers.length; i++) {
+		for (var j = markers.length - 1; j >= 0; j--) {
 			for (var markersCount in markersArray) {
-				if (markersArray[markersCount].id == markers[i].Id) {
-					markersArray[i].setMap(null);
+				if (markersArray[markersCount].id == markers[j].Id) {
+					markersArray[markersCount].setMap(null);
+					markersArray.splice(markersCount, 1);
 				}
 			}
 		}
