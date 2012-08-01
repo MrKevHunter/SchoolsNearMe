@@ -27,18 +27,44 @@ function displayError(error) {
 }
 
 function initialize() {
-	if (navigator.geolocation) {
-		var timeoutVal = 10 * 1000 * 1000;
-		navigator.geolocation.getCurrentPosition(
-				displayPosition,
-				displayError,
-				{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
-			);
-	} else {
-		var defaultCoords = { latitude: 51.52269, longitude: -0.984406 };
-		var defaultPosition = { coords: defaultCoords };
-		displayPosition(defaultPosition);
-	}
+    // this determines if its available or if its defined;
+    // http://html5doctor.com/finding-your-position-with-geolocation/
+    if (navigator.geolocation) {
+        var timeoutVal = 10 * 1000 * 1000;
+        navigator.geolocation.getCurrentPosition(
+	            displayPosition,
+	            displayError,
+	            { enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
+	        );
+    } else if (confirm("Your location is unable to be determined in your browser, would you like for us to try by network address?")) {
+        
+        var ajax = $.ajax({
+            type: "get",
+            url: "/api/geolocation",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        });
+
+        ajax.done(function(result) {
+            var defaultCoords = { latitude: result.Latitude, longitude: result.Longitude };
+            var defaultPosition = { coords: defaultCoords };
+            displayPosition(defaultPosition);   
+        });
+
+        ajax.fail(function () {
+            alert('Unfortunately your location was unable to be determined; using default location');
+            defaultLocation();
+        });
+
+    } else {
+        defaultLocation();
+    }
+}
+
+function defaultLocation() {
+    var defaultCoords = { latitude: 51.52269, longitude: -0.984406 };
+    var defaultPosition = { coords: defaultCoords };
+    displayPosition(defaultPosition);    
 }
 
 google.maps.Map.prototype.clearOverlays = function () {
@@ -70,14 +96,12 @@ function getSchools() {
 	var items = $("#establishmentType").val();
 	$.ajax({
 		type: 'post',
-		url: '/Home/GetSchools',
+		url: '/api/schools',
 		dataType: 'json',
-		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating,schoolTypes: items }),
+		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
 		contentType: 'application/json; charset=utf-8',
 		success: function (result) {
 			map.clearOverlays();
-
-			result = jQuery.parseJSON(result);
 			map.placeMarkers = $.each(result, function (i, item) {
 				var lat = item.Location.Latitude;
 				var lng = item.Location.Longitude;
@@ -100,8 +124,8 @@ function getSchools() {
 				});
 			});
 		},
-		error: function () {
-			alert("Error");
+		error: function (jqXHR, textStatus, errorThrown) {
+		    alert(jqXHR.responseText);
 		}
 	});
 }

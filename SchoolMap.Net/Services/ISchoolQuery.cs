@@ -6,8 +6,7 @@ namespace SchoolMap.Net.Services
 {
     public interface ISchoolQuery
     {
-        IEnumerable<School> GetSchools(MapBoundries mapBoundries, IDocumentSession ravenSession, int overallOfstedRating,
-                                       List<string> schoolTypes = null);
+        IEnumerable<School> GetSchools(MapBoundries mapBoundries, IDocumentSession ravenSession, int overallOfstedRating, List<string> schoolTypes = null);
     }
 
     public class MapBoundries

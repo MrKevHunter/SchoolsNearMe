@@ -11,8 +11,6 @@ namespace SchoolMap.Net.Models
             _longitude = longitude;
         }
 
-        #region ISpatialCoordinate Members
-
         public decimal Latitude
         {
             get { return _latitude; }
@@ -29,7 +27,5 @@ namespace SchoolMap.Net.Models
         {
             return ((Latitude == 0) && (Longitude == 0));
         }
-
-        #endregion
     }
 }
