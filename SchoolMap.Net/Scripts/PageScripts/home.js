@@ -1,7 +1,7 @@
 ﻿/* File Created: July 23, 2012 */
 var markersArray = [];
 var map;
-
+var infoWindow;
 function displayPosition(position) {
 	var mapOptions = {
 		//center: new google.maps.LatLng(51.52269, -0.984406),
@@ -78,11 +78,22 @@ google.maps.Map.prototype.clearOverlays = function () {
 function clearOverlays() {
 	if (markersArray) {
 		for (var i = 0; i < markersArray.length; i++) {
-			markersArray[i].setMap(null);
+			
 		}
 	}
 }
 
+function clearOverlays(markers) {
+	if (markers) {
+		for (var i = 0; i < markers.length; i++) {
+			for (var markersCount in markersArray) {
+				if (markersArray[markersCount].id == markers[i].Id) {
+					markersArray[i].setMap(null);
+				}
+			}
+		}
+	}
+}
 
 function getSchools() {
 	var boundries = map.getBounds();
@@ -92,7 +103,7 @@ function getSchools() {
 	var northEastLong = northEast.lng();
 	var southWestLat = southWest.lat();
 	var southWestLong = southWest.lng();
-	var ofstedRating = $("#overallOfstedRatingSlider").slider("value");
+	var ofstedRating = $("#rating").val();
 	var items = $("#establishmentType").val();
 	$.ajax({
 		type: 'post',
@@ -101,31 +112,53 @@ function getSchools() {
 		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
 		contentType: 'application/json; charset=utf-8',
 		success: function (result) {
-			map.clearOverlays();
+
+			var markersToDelete = new Array();
+			for (var mapCount in map.placeMarkers) {
+				var found = false;
+				for (var resultCount in result) {
+					if (result[resultCount].Id == map.placeMarkers[mapCount].Id) {
+						found = true;
+					}
+				}
+				if (!found) {
+					markersToDelete.push(map.placeMarkers[mapCount]);
+				}
+			}
+			clearOverlays(markersToDelete);
 			map.placeMarkers = $.each(result, function (i, item) {
-				var lat = item.Location.Latitude;
-				var lng = item.Location.Longitude;
-				var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-				// extend the bounds to include the new point      
-				// add the marker itself      
-				var marker = new google.maps.Marker({
-					position: point,
-					map: map,
-					draggable: false,
-					animation: google.maps.Animation.DROP
-				});
-				markersArray.push(marker);
-				var infoWindow = new google.maps.InfoWindow();
-				var html = '<b>' + item.SchoolName + '</b><br />' + item.PostCode;
-				// add a listener to open the tooltip when a user clicks on one of the markers      
-				google.maps.event.addListener(marker, 'click', function () {
-					infoWindow.setContent(html);
-					infoWindow.open(map, marker);
-				});
+				var exists = false;
+				for (var markerCount in markersArray) {
+					if (markersArray[markerCount].id == item.Id) {
+						exists = true;
+					}
+				}
+				if (!exists) {
+					var lat = item.Location.Latitude;
+					var lng = item.Location.Longitude;
+					var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+					// extend the bounds to include the new point      
+					// add the marker itself      
+					var marker = new google.maps.Marker({
+						position: point,
+						map: map,
+						draggable: false,
+						animation: google.maps.Animation.DROP,
+						id: item.Id
+					});
+					markersArray.push(marker);
+					infoWindow = new google.maps.InfoWindow();
+					var html = '<b>' + item.SchoolName + '</b><br />' + item.PostCode + '<br />Type of establishment:' + item.TypeOfEstablishment + '<br />Overall effectiveness:' + item.OfstedRating.OverallEffectiveness;
+					// add a listener to open the tooltip when a user clicks on one of the markers      
+					google.maps.event.addListener(marker, 'click', function() {
+						infoWindow.setContent(html);
+						infoWindow.open(map, marker);
+					});
+				}
 			});
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-		    alert(jqXHR.responseText);
+			alert(jqXHR.responseText);
 		}
 	});
 }
