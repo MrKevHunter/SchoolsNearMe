@@ -22,8 +22,6 @@ namespace SchoolMap.Net.Controllers.Api
                 {
                     using (RavenSession)
                     {
-                        //if (this.AutoSave)
-                        //    RavenSession.SaveChanges();
                         RavenSession.Dispose();
                         RavenSession = null;
                     }

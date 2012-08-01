@@ -8,34 +8,14 @@ namespace SchoolMap.Net.Models
 
         public int OverallEffectiveness { get; set; }
 
-        public int PupilAchievement
-        {
-            get;
-            set;
-        }
+        public int PupilAchievement { get; set; }
 
-        public int HowWellLearnerAchieve
-        {
-            get;
-            set;
-        }
+        public int HowWellLearnerAchieve { get; set; }
 
-        public int PupilBehaviorAndSafety
-        {
-            get;
-            set;
-        }
+        public int PupilBehaviorAndSafety { get; set; }
 
-        public int QualityOfTeaching
-        {
-            get;
-            set;
-        }
+        public int QualityOfTeaching { get; set; }
 
-        public int LeadershipAndManagement
-        {
-            get;
-            set;
-        }
+        public int LeadershipAndManagement { get; set; }
     }
 }

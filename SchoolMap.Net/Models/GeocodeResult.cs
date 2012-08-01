@@ -16,8 +16,7 @@ namespace SchoolMap.Net.Models
         {
             var result = new GeocodeResult
                 {
-                    Location =
-                        new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),
+                    Location = new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),
                     ReturnCode = GetReturnCode(geocodeInfo[0]),
                     Accuracy = Convert.ToDecimal(geocodeInfo[1])
                 };

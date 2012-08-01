@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Raven.Client;
-using Raven.Client.Linq;
 using SchoolMap.Net.Models;
 
 namespace SchoolMap.Net.Services

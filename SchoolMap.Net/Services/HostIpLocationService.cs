@@ -53,11 +53,11 @@ namespace SchoolMap.Net.Services
                         result = w.DownloadString(String.Format("http://api.hostip.info/?ip={0}&position=true", ipAddress));
                     }
                 }
-                catch (WebException webException)
+                catch (WebException)
                 {
                     issue = true;
                 }
-                catch (NotSupportedException notSupportedException)
+                catch (NotSupportedException)
                 {
                     issue = true;
                 }
