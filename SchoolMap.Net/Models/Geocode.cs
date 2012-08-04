@@ -5,13 +5,27 @@ using System.Web;
 
 namespace SchoolMap.Net.Models
 {
-    public class Geocode
+    public interface IGeocode
+    {
+        /// <summary>
+        /// Gets a Coordinate from a address.
+        /// </summary>
+        /// <param name="address">An address.
+        /// <remarks>
+        /// <example>1600 Amphitheatre Parkway Mountain View, CA 94043</example>
+        /// </remarks>
+        /// </param>
+        /// <returns>A spatial coordinate that contains the latitude and longitude of the address.</returns>
+        GeocodeResult GetCoordinates(string address);
+    }
+
+    public class Geocode : IGeocode
     {
         private const string _googleUri = "http://maps.google.com/maps/geo?q=";
         private const string _googleKey = "AIzaSyDWVbVQzp7brCHZzomUT2hFsEjvAPK8xc8";
         private const string _outputType = "csv"; // Available options: csv, xml, kml, json
 
-        private static Uri GetGeocodeUri(string address)
+        private  Uri GetGeocodeUri(string address)
         {
             address = HttpUtility.UrlEncode(address);
             return new Uri(String.Format("{0}{1}&output={2}&key={3}", _googleUri, address, _outputType, _googleKey));
@@ -26,7 +40,7 @@ namespace SchoolMap.Net.Models
         /// </remarks>
         /// </param>
         /// <returns>A spatial coordinate that contains the latitude and longitude of the address.</returns>
-        public static GeocodeResult GetCoordinates(string address)
+        public  GeocodeResult GetCoordinates(string address)
         {
             var client = new WebClient();
             Uri uri = GetGeocodeUri(address);

@@ -1,36 +1,68 @@
 ﻿<div id="rhsSearchBar">
-	<script type="text/javascript">
-		$(function () {
-			$("#overallOfstedRatingSlider").slider({
-				value: 4,
-				min: 1,
-				max: 4,
-				step: 1,
-				slide: function (event, ui) {
-					$("#rating").val(ui.value);
-					getSchools(map.getBounds(), ui.value);
-				}
-			});
-			$("#rating").val(+$("#overallOfstedRatingSlider").slider("value"));
+    <script type="text/javascript">
+        $(function () {
 
-			$("#establishmentType").chosen();
-		});
-	</script>
-	<p>
-		<label for="rating">
-			Minimum OFSTED rating (lower is better):</label>
-		<input type="text" id="rating" style="border: 0; color: #f6931f; font-weight: bold;" />
-	</p>
-	<div id="overallOfstedRatingSlider">
-	</div>
+
+            $("#btnSearchForLocation").click(function () {
+
+                $.ajax({
+                    type: 'post',
+                    url: '/api/AddressGeocode',
+                    dataType: 'json',
+                    data: JSON.stringify({ AddressSearchText: $("#goToSearchBox").val() }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        map.panTo(new google.maps.LatLng(result.Latitude, result.Longitude));
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR.responseText);
+                        alert(textStatus);
+                        alert(errorThrown);
+                    }
+
+
+                });
+            });
+
+            $("#overallOfstedRatingSlider").slider({
+                value: 4,
+                min: 1,
+                max: 4,
+                step: 1,
+                slide: function (event, ui) {
+                    $("#rating").val(ui.value);
+                    getSchools(map.getBounds(), ui.value);
+                }
+            });
+            $("#rating").val(+$("#overallOfstedRatingSlider").slider("value"));
+
+            $("#establishmentType").chosen();
+        });
+
+    </script>
+    <p>
+        <label for="rating">
+            Minimum OFSTED rating (lower is better):</label>
+        <input type="text" id="rating" style="border: 0; color: #f6931f; font-weight: bold;" />
+    </p>
+    <div id="overallOfstedRatingSlider">
+    </div>
     <div id="divEstablishmentType">
-        		<label for="establishmentType">
-			Establishment Type:</label>
-        <select multiple="multiple"  id="establishmentType" style="width: 300px">
+        <label for="establishmentType">
+            Establishment Type:</label>
+        <select multiple="multiple" id="establishmentType" style="width: 300px">
             <option value="Nursery">Nursery</option>
             <option value="Primary">Primary</option>
             <option value="Secondary">Secondary</option>
             <option value="Sixteen Plus">Sixteen Plus</option>
         </select>
+    </div>
+    <div id="divGoToLocation">
+        <label for="goToSearchBox">
+            Go To:</label>
+        <input id="goToSearchBox" />
+        <button id="btnSearchForLocation">
+            Search</button>
     </div>
 </div>

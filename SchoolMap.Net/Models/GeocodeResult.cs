@@ -14,6 +14,10 @@ namespace SchoolMap.Net.Models
 
         public static GeocodeResult CreateResultFromGoogleCsv(string[] geocodeInfo)
         {
+            if (geocodeInfo.Length== 3)
+            {
+                return new GeocodeResult(){ReturnCode = GetReturnCode(geocodeInfo[0])};
+            }
             var result = new GeocodeResult
                 {
                     Location = new Coordinate(Convert.ToDecimal(geocodeInfo[2]), Convert.ToDecimal(geocodeInfo[3])),

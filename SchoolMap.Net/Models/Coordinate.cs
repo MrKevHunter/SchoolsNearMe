@@ -23,6 +23,7 @@ namespace SchoolMap.Net.Models
             set { _longitude = value; }
         }
 
+        
         public bool NotSet()
         {
             return ((Latitude == 0) && (Longitude == 0));

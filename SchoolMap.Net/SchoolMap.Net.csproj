@@ -171,6 +171,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Controllers\Api\AddressGeocodeController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressSearch.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Geocode.cs" />
     <Compile Include="Models\GeocodeResult.cs" />

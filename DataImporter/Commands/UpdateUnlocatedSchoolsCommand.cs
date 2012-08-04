@@ -31,7 +31,7 @@ namespace SchoolMap.Net.DataImporter.Commands
         {
             try
             {
-                GeocodeResult geocodeResult = Geocode.GetCoordinates(school.GetAddress());
+                GeocodeResult geocodeResult = new Geocode().GetCoordinates(school.GetAddress());
                 school.Location = geocodeResult.Location;
             }
             catch(FormatException e)
