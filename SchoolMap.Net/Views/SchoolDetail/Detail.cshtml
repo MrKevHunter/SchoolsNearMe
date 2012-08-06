@@ -1,0 +1,19 @@
+﻿@using SchoolMap.Net.Extensions
+@model SchoolMap.Net.Models.School
+@if (!string.IsNullOrWhiteSpace(Model.Website))
+{
+    <a target="_blank" href="@Model.Website">
+    <p>
+        <b>@Model.SchoolName</b></p>
+        </a>
+}
+else
+{ 
+    <p>
+        <b>@Model.SchoolName</b></p>
+}
+<p>@Model.PostCode</p>
+<p>
+    Type of establishment: @Model.TypeOfEstablishment.GetDescription()</p>
+<p>
+    Overall effectivness: @Model.OfstedRating.OverallEffectiveness</p>

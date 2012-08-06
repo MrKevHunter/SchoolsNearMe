@@ -23,8 +23,13 @@
 
 	</style>
 </head>
-<body>
-	@RenderBody()
-	@RenderSection("scripts", required: false)
-</body>
+    <body>
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+    </body>
+    <script language="javascript">
+        $().ready(function (parameters) {
+            $(":button").button();
+        });
+    </script>
 </html>
