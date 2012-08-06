@@ -1,8 +1,8 @@
 ﻿/* File Created: July 23, 2012 */
 #rhsSearchBar {
-	width: 25%;
+	width: 22%;
 	float: right;
-	padding: 20px;
+	margin: 20px;
 }
 
 #map_canvas {

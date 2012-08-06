@@ -1,8 +1,13 @@
-﻿namespace SchoolMap.Net.Models
+﻿using System.ComponentModel;
+
+namespace SchoolMap.Net.Models
 {
     public enum TypeOfEstablishment
     {
-        Nursery,Primary,Secondary,
-        NotApplicable,SixteenPlus
+        [Description("Nursery")] Nursery,
+        [Description("Primary")] Primary,
+        [Description("Secondary")] Secondary,
+        [Description("Not Applicable")] NotApplicable,
+        [Description("Sixteen plus")] SixteenPlus
     }
 }

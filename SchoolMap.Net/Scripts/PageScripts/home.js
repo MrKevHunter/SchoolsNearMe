@@ -107,60 +107,63 @@ function getSchools() {
 	var ofstedRating = $("#rating").val();
 	var items = $("#establishmentType").val();
 	$.ajax({
-		type: 'post',
-		url: '/api/schools',
-		dataType: 'json',
-		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
-		contentType: 'application/json; charset=utf-8',
-		success: function (result) {
+	    type: 'post',
+	    url: '/api/schools',
+	    dataType: 'json',
+	    data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
+	    contentType: 'application/json; charset=utf-8',
+	    success: function (result) {
 
-			var markersToDelete = new Array();
-			for (var mapCount in map.placeMarkers) {
-				var found = false;
-				for (var resultCount in result) {
-					if (result[resultCount].Id == map.placeMarkers[mapCount].Id) {
-						found = true;
-					}
-				}
-				if (!found) {
-					markersToDelete.push(map.placeMarkers[mapCount]);
-				}
-			}
-			clearOverlays(markersToDelete);
-			map.placeMarkers = $.each(result, function (i, item) {
-				var exists = false;
-				for (var markerCount in markersArray) {
-					if (markersArray[markerCount].id == item.Id) {
-						exists = true;
-					}
-				}
-				if (!exists) {
-					var lat = item.Location.Latitude;
-					var lng = item.Location.Longitude;
-					var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-					// extend the bounds to include the new point      
-					// add the marker itself      
-					var marker = new google.maps.Marker({
-						position: point,
-						map: map,
-						draggable: false,
-						animation: google.maps.Animation.DROP,
-						id: item.Id
-					});
-					markersArray.push(marker);
-					infoWindow = new google.maps.InfoWindow();
-					var html = '<b>' + item.SchoolName + '</b><br />' + item.PostCode + '<br />Type of establishment:' + item.TypeOfEstablishment + '<br />Overall effectiveness:' + item.OfstedRating.OverallEffectiveness;
-					// add a listener to open the tooltip when a user clicks on one of the markers      
-					google.maps.event.addListener(marker, 'click', function() {
-						infoWindow.setContent(html);
-						infoWindow.open(map, marker);
-					});
-				}
-			});
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
-		}
+	        var markersToDelete = new Array();
+	        for (var mapCount in map.placeMarkers) {
+	            var found = false;
+	            for (var resultCount in result) {
+	                if (result[resultCount].Id == map.placeMarkers[mapCount].Id) {
+	                    found = true;
+	                }
+	            }
+	            if (!found) {
+	                markersToDelete.push(map.placeMarkers[mapCount]);
+	            }
+	        }
+	        clearOverlays(markersToDelete);
+	        map.placeMarkers = $.each(result, function (i, item) {
+	            var exists = false;
+	            for (var markerCount in markersArray) {
+	                if (markersArray[markerCount].id == item.Id) {
+	                    exists = true;
+	                }
+	            }
+	            if (!exists) {
+	                var lat = item.Location.Latitude;
+	                var lng = item.Location.Longitude;
+	                var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+	                // extend the bounds to include the new point      
+	                // add the marker itself      
+	                var marker = new google.maps.Marker({
+	                    position: point,
+	                    map: map,
+	                    draggable: false,
+	                    animation: google.maps.Animation.DROP,
+	                    id: item.Id
+	                });
+	                markersArray.push(marker);
+	                infoWindow = new google.maps.InfoWindow();
+	                var html = '<b>' + item.SchoolName + '</b><br />' + item.PostCode + '<br />Type of establishment:' + item.TypeOfEstablishment + '<br />Overall effectiveness:' + item.OfstedRating.OverallEffectiveness;
+	                // add a listener to open the tooltip when a user clicks on one of the markers      
+	                google.maps.event.addListener(marker, 'click', function () {
+	                    $.get('/SchoolDetail/Detail',{ id: item.Id }, function(parameters) {
+	                        infoWindow.setContent(parameters);
+	                        infoWindow.open(map, marker);
+	                    });
+	                   
+	                });
+	            }
+	        });
+	    },
+	    error: function (jqXHR, textStatus, errorThrown) {
+	        alert(jqXHR.responseText);
+	    }
 	});
 }
 
