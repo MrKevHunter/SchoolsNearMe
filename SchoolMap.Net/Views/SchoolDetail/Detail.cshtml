@@ -9,11 +9,11 @@
 }
 else
 { 
-    <p>
-        <b>@Model.SchoolName</b></p>
+    <p><b>@Model.SchoolName</b></p>
 }
+<p>@Html.Raw(Html.SimpleLink(string.Format("http://www.ofsted.gov.uk/inspection-reports/find-inspection-report/provider/ELS/{0}/", @Model.Id), "Ofsted page"))</p>
 <p>@Model.PostCode</p>
 <p>
     Type of establishment: @Model.TypeOfEstablishment.GetDescription()</p>
 <p>
-    Overall effectivness: @Model.OfstedRating.OverallEffectiveness</p>
+    Overall effectiveness: @Model.OfstedRating.OverallEffectiveness</p>
