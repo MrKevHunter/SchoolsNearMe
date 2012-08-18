@@ -24,6 +24,7 @@ function displayError(error) {
 		3: 'Request timeout'
 	};
 	alert("Error: " + errors[error.code]);
+	defaultLocation();
 }
 
 function initialize() {
