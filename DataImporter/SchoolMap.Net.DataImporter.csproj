@@ -127,12 +127,6 @@
   <ItemGroup>
     <Content Include="Raven.Studio.xap" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SchoolMap.Net\SchoolMap.Net.csproj">
-      <Project>{5270C9CA-02E7-4B7F-9792-1550022BF65A}</Project>
-      <Name>SchoolMap.Net</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

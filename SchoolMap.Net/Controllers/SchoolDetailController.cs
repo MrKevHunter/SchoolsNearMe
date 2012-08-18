@@ -14,7 +14,7 @@ namespace SchoolMap.Net.Controllers
 
         public ActionResult Detail(int id)
         {
-            var school = RavenSession.Query<School>().Single(x => x.Id == id.ToString());
+            var school = RavenSession.Load<School>(id.ToString());
             return PartialView(school);
         }
 

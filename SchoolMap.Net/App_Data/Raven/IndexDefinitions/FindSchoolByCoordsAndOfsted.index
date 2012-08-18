@@ -1,0 +1,18 @@
+{
+  "Name": "FindSchoolByCoordsAndOfsted",
+  "Map": "docs.Schools\r\n\t.Where(school => school.OfstedRating != null)\r\n\t.Select(school => new {OverallEffectiveness = school.OfstedRating.OverallEffectiveness, Location = school.Location, Latitude = school.Location.Latitude, Longitude = school.Location.Longitude})",
+  "Maps": [
+    "docs.Schools\r\n\t.Where(school => school.OfstedRating != null)\r\n\t.Select(school => new {OverallEffectiveness = school.OfstedRating.OverallEffectiveness, Location = school.Location, Latitude = school.Location.Latitude, Longitude = school.Location.Longitude})"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Type": "Map"
+}
