@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Xml;
 
-namespace SchoolMap.Net.DataImporter
+namespace SchoolsNearMe.DataImporter
 {
     //A summary of status information returned in the response when you check 
     // job status. 

@@ -1,4 +1,4 @@
-namespace SchoolMap.Net.DataImporter
+namespace SchoolsNearMe.DataImporter
 {
     internal class DownloadDetails
     {

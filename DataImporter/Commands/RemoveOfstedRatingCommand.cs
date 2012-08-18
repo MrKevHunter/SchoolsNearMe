@@ -1,9 +1,9 @@
 ﻿using Raven.Abstractions.Data;
 using Raven.Client.Document;
 using Raven.Json.Linq;
-using SchoolMap.Net.Models;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     public class RemoveOfstedRatingCommand : IRavenCommand
     {

@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using LumenWorks.Framework.IO.Csv;
 using Raven.Client.Document;
-using SchoolMap.Net.Models;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     public class ImportOfstedData : IRavenCommand
     {

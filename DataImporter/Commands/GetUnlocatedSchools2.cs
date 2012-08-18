@@ -2,10 +2,10 @@
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Linq;
-using SchoolMap.Net.Models;
 using System.Linq;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     public class GetUnlocatedSchools2 : IRavenCommand
     {

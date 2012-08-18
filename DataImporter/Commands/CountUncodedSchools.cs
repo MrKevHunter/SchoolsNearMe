@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using Raven.Client;
 using Raven.Client.Document;
-using SchoolMap.Net.Models;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     public class CountUncodedSchools : IRavenCommand
     {

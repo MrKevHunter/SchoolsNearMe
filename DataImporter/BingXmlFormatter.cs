@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using SchoolMap.Net.Models;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter
+namespace SchoolsNearMe.DataImporter
 {
     public class BingXmlFormatter
     {

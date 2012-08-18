@@ -1,10 +1,8 @@
 ﻿using System;
 using Raven.Client.Document;
-using Raven.Client.Indexes;
-using SchoolMap.Net.DataImporter.Commands;
-using SchoolMap.Net.Models.Indexes;
+using SchoolsNearMe.DataImporter.Commands;
 
-namespace SchoolMap.Net.DataImporter
+namespace SchoolsNearMe.DataImporter
 {
     internal class Program
     {

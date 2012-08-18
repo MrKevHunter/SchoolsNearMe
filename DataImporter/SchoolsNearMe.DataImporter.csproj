@@ -8,8 +8,8 @@
     <ProjectGuid>{222A35F8-8DCD-40CF-AD82-7096B2F8900B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SchoolMap.Net.DataImporter</RootNamespace>
-    <AssemblyName>SchoolMap.Net.DataImporter</AssemblyName>
+    <RootNamespace>SchoolsNearMe.DataImporter</RootNamespace>
+    <AssemblyName>SchoolsNearMe.DataImporter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -115,6 +115,7 @@
     <Compile Include="Commands\RemoveOfstedRatingCommand.cs" />
     <Compile Include="Commands\StartIndexing.cs" />
     <Compile Include="Commands\StopIndexing.cs" />
+    <Compile Include="Commands\UploadRavenItem.cs" />
     <Compile Include="DownloadDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Raven.Studio.xap" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolsNearMe\SchoolsNearMe.csproj">
+      <Project>{DC7CAB96-DAFE-4F15-9342-5EA62873A313}</Project>
+      <Name>SchoolsNearMe</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -104,6 +104,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolsNearMe\SchoolsNearMe.csproj">
+      <Project>{DC7CAB96-DAFE-4F15-9342-5EA62873A313}</Project>
+      <Name>SchoolsNearMe</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

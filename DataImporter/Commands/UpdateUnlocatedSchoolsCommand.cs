@@ -1,10 +1,9 @@
 using System;
 using System.Threading;
-using Raven.Client;
 using Raven.Client.Document;
-using SchoolMap.Net.Models;
+using SchoolsNearMe.Models;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     internal class UpdateUnlocatedSchoolsCommand : IRavenCommand
     {

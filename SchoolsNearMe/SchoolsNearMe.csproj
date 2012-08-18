@@ -214,6 +214,7 @@
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\Api\SchoolSearchParameters.cs" />
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
     <Compile Include="Controllers\Api\ValuesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -229,11 +230,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddressSearch.cs" />
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\RavenDbDumper.cs" />
     <Compile Include="Models\Coordinate.cs" />
+    <Compile Include="Models\DumperStats.cs" />
     <Compile Include="Models\Geocode.cs" />
     <Compile Include="Models\GeocodeResult.cs" />
     <Compile Include="Models\GeocodeReturnCode.cs" />
+    <Compile Include="Models\IGeocode.cs" />
     <Compile Include="Models\Indexes\FindSchoolByCoordsAndOfsted.cs" />
     <Compile Include="Models\Indexes\FindSchoolByName.cs" />
     <Compile Include="Models\ISpatialCoordinate.cs" />
@@ -244,6 +247,7 @@
     <Compile Include="Services\HostIpLocationService.cs" />
     <Compile Include="Services\ILocationService.cs" />
     <Compile Include="Services\ISchoolQuery.cs" />
+    <Compile Include="Services\MapBoundries.cs" />
     <Compile Include="Services\SchoolQuery.cs" />
   </ItemGroup>
   <ItemGroup>

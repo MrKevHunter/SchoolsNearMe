@@ -22,19 +22,4 @@ namespace SchoolsNearMe.Controllers.Api
             return schools.ToList();
         }
     }
-
-    public class SchoolSearchParameters
-    {
-        public SchoolSearchParameters()
-        {
-            SchoolTypes = new List<string>();
-        }
-
-        public decimal NorthEastLat { get; set; }
-        public decimal NorthEastLong { get; set; }
-        public decimal SouthWestLat { get; set; }
-        public decimal SouthWestLong { get; set; }
-        public int OfstedRating { get; set; }
-        public List<string> SchoolTypes { get; set; } 
-    }
 }

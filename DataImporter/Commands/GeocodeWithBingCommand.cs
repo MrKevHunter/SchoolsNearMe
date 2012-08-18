@@ -1,7 +1,7 @@
 using System;
 using Raven.Client.Document;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     class GeocodeWithBingCommand : IRavenCommand
     {

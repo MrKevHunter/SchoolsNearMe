@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using Raven.Client.Document;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     internal class StartIndexing : IRavenCommand
     {

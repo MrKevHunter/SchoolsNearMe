@@ -5,7 +5,7 @@ using System.Linq;
 using Raven.Client;
 using Raven.Client.Document;
 
-namespace SchoolMap.Net.DataImporter.Commands
+namespace SchoolsNearMe.DataImporter.Commands
 {
     public class RavenEach
     {
