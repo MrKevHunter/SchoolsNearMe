@@ -31,7 +31,7 @@ namespace SchoolsNearMe.Models
 
         public string GetAddress()
         {
-            return string.Format("{0},{1},{2},{3}", SchoolName, Street, Town, PostCode);
+            return string.Format("{0}, {1}, {2}, {3}", SchoolName, Street, Town, PostCode);
         }
     }
 }
