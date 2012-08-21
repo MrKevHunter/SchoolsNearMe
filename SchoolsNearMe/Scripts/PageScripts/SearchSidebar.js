@@ -1,4 +1,10 @@
-﻿$(function () {
+﻿var ofstedDescriptions = {};
+ofstedDescriptions['4'] = "4 - Poor";
+ofstedDescriptions['3'] = "3 - Satisfactory";
+ofstedDescriptions['2'] = "2 - Good";
+ofstedDescriptions['1'] = "1 - Outstanding";
+
+$(function () {
 	$("#btnSearchForLocation").click(function () {
 		$.ajax({
 			type: 'post',
@@ -24,12 +30,12 @@
 		max: 4,
 		step: 1,
 		slide: function (event, ui) {
-			$("#rating").val(ui.value);
+		    $("#rating").val(ofstedDescriptions[ui.value]);
 			getSchools(map.getBounds(), ui.value);
 		}
 	});
-
-	$("#rating").val(+$("#overallOfstedRatingSlider").slider("value"));
+    var sliderValue = +$("#overallOfstedRatingSlider").slider("value");
+    $("#rating").val(ofstedDescriptions[sliderValue]);
 
 	$("#establishmentType").chosen();
 });
