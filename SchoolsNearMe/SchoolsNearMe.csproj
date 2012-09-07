@@ -321,6 +321,7 @@
     <Content Include="Images\NuGetGallery.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
+    <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-1.8.0-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />

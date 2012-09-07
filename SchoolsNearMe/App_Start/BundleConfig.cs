@@ -15,7 +15,7 @@ namespace SchoolsNearMe.App_Start
                         "~/Scripts/jquery-ui*"));
 
             bundles.Add(new ScriptBundle("~/bundles/chosen").Include(
-            "~/Scripts/chosen.jquery.min.js"));
+            "~/Scripts/chosen.jquery.*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
