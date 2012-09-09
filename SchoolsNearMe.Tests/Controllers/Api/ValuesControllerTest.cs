@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SchoolsNearMe.Controllers.Api;
 
 
 namespace SchoolMap.Net.Tests.Controllers.Api
 {
-    [TestClass]
+    [TestFixture]
     public class ValuesControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Get()
         {
             // Arrange
@@ -25,7 +25,7 @@ namespace SchoolMap.Net.Tests.Controllers.Api
             Assert.AreEqual("value2", result.ElementAt(1));
         }
 
-        [TestMethod]
+        [Test]
         public void GetById()
         {
             // Arrange
@@ -38,7 +38,7 @@ namespace SchoolMap.Net.Tests.Controllers.Api
             Assert.AreEqual("value", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Post()
         {
             // Arrange
@@ -50,7 +50,7 @@ namespace SchoolMap.Net.Tests.Controllers.Api
             // Assert
         }
 
-        [TestMethod]
+        [Test]
         public void Put()
         {
             // Arrange
@@ -62,7 +62,7 @@ namespace SchoolMap.Net.Tests.Controllers.Api
             // Assert
         }
 
-        [TestMethod]
+        [Test]
         public void Delete()
         {
             // Arrange

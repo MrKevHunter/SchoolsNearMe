@@ -40,9 +40,10 @@ namespace SchoolsNearMe
 
             try
             {
-                
+               
                 Store = new DocumentStore(){ConnectionStringName = "RavenDB"};
                 
+
                 Store.Initialize();
             }
             catch (Exception e)

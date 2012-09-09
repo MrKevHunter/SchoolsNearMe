@@ -81,6 +81,40 @@ function clearOverlays(markers) {
 	}
 }
 
+function getColour(school) {
+    if(school.OfstedRating.OverallEffectiveness == 1) {
+        return "Green";
+    }
+    if (school.OfstedRating.OverallEffectiveness == 2) {
+        return "Blue";
+    }
+    if (school.OfstedRating.OverallEffectiveness == 3) {
+        return "Yellow";
+    }
+    if (school.OfstedRating.OverallEffectiveness == 4) {
+        return "red";
+    }
+}
+
+function getAge(school) {
+    if (school.TypeOfEstablishment == 0) {
+        return "Nursery";
+    }
+    if (school.TypeOfEstablishment == 1) {
+        return "Primary";
+    }
+    if (school.TypeOfEstablishment == 2) {
+        return "Secondary";
+    }
+    return "unknown";
+}
+
+function getIcon(school) {
+    var colour = getColour(school);
+    var age = getAge(school);
+    return "/Images/" + colour + "-" + age + ".png";
+}
+
 function getSchools() {
 	var boundries = map.getBounds();
 	var northEast = boundries.getNorthEast();
@@ -92,63 +126,70 @@ function getSchools() {
 	var ofstedRating = $("#overallOfstedRatingSlider").slider("value"); ;
 	var items = $("#establishmentType").val();
 	$.ajax({
-		type: 'post',
-		url: '/api/schools',
-		dataType: 'json',
-		data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
-		contentType: 'application/json; charset=utf-8',
-		success: function (result) {
+	    type: 'post',
+	    url: '/api/schools',
+	    dataType: 'json',
+	    data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
+	    contentType: 'application/json; charset=utf-8',
+	    success: function (result) {
 
-			var markersToDelete = new Array();
-			for (var mapCount in map.placeMarkers) {
-				var found = false;
-				for (var resultCount in result) {
-					if (result[resultCount].Id == map.placeMarkers[mapCount].Id) {
-						found = true;
-					}
-				}
-				if (!found) {
-					markersToDelete.push(map.placeMarkers[mapCount]);
-				}
-			}
-			clearOverlays(markersToDelete);
-			map.placeMarkers = $.each(result, function (i, item) {
-				var exists = false;
-				for (var markerCount in markersArray) {
-					if (markersArray[markerCount].id == item.Id) {
-						exists = true;
-					}
-				}
-				if (!exists) {
-					var lat = item.Location.Latitude;
-					var lng = item.Location.Longitude;
-					var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-					// extend the bounds to include the new point      
-					// add the marker itself      
-					var marker = new google.maps.Marker({
-						position: point,
-						map: map,
-						draggable: false,
-						animation: google.maps.Animation.DROP,
-						id: item.Id
-					});
-					markersArray.push(marker);
-					infoWindow = new google.maps.InfoWindow();
-					// add a listener to open the tooltip when a user clicks on one of the markers      
-					google.maps.event.addListener(marker, 'click', function () {
-						$.get('/SchoolDetail/Detail', { id: item.Id }, function (parameters) {
-							
-							infoWindow.setContent(parameters);
-							infoWindow.open(map, marker);
-						});
+	        var markersToDelete = new Array();
+	        for (var mapCount in map.placeMarkers) {
+	            var found = false;
+	            for (var resultCount in result) {
+	                if (result[resultCount].Id == map.placeMarkers[mapCount].Id) {
+	                    found = true;
+	                }
+	            }
+	            if (!found) {
+	                markersToDelete.push(map.placeMarkers[mapCount]);
+	            }
+	        }
+	        clearOverlays(markersToDelete);
+	        map.placeMarkers = $.each(result, function (i, item) {
+	            var exists = false;
+	            for (var markerCount in markersArray) {
+	                if (markersArray[markerCount].id == item.Id) {
+	                    exists = true;
+	                }
+	            }
+	            if (!exists) {
+	                var lat = item.Location.Latitude;
+	                var lng = item.Location.Longitude;
+	                var point = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+	                // extend the bounds to include the new point      
+	                // add the marker itself      
+	                var icon = getIcon(item);
 
-					});
-				}
-			});
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
-		}
+	                var marker = new google.maps.Marker({
+	                    position: point,
+	                    map: map,
+	                    draggable: false,
+	                    animation: google.maps.Animation.DROP,
+
+	                    id: item.Id
+	                });
+	                if (icon != undefined) {
+	                    marker.setIcon(icon);
+	                }
+
+	                markersArray.push(marker);
+	                infoWindow = new google.maps.InfoWindow();
+	                // add a listener to open the tooltip when a user clicks on one of the markers      
+	                google.maps.event.addListener(marker, 'click', function () {
+	                    $.get('/SchoolDetail/Detail', { id: item.Id }, function (parameters) {
+
+	                        infoWindow.setContent(parameters);
+	                        infoWindow.open(map, marker);
+	                    });
+
+	                });
+	            }
+	        });
+	    },
+	    error: function (jqXHR, textStatus, errorThrown) {
+	        alert(jqXHR.responseText);
+	    }
 	});
 }
 
