@@ -89,7 +89,7 @@ function getSchools() {
 	var northEastLong = northEast.lng();
 	var southWestLat = southWest.lat();
 	var southWestLong = southWest.lng();
-	var ofstedRating = $("#rating").val();
+	var ofstedRating = $("#overallOfstedRatingSlider").slider("value"); ;
 	var items = $("#establishmentType").val();
 	$.ajax({
 		type: 'post',

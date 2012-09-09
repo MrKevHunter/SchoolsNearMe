@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Raven.Client;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 using SchoolsNearMe.App_Start;
 
@@ -40,10 +41,7 @@ namespace SchoolsNearMe
             try
             {
                 
-                Store = new EmbeddableDocumentStore()
-                    {
-                        DataDirectory = Server.MapPath("App_Data/Raven")
-                    };
+                Store = new DocumentStore(){ConnectionStringName = "RavenDB"};
                 
                 Store.Initialize();
             }

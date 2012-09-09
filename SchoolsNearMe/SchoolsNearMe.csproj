@@ -325,6 +325,7 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-1.8.0-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-ui-1.8.22.js" />
     <Content Include="Scripts\jquery-ui-1.8.22.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
