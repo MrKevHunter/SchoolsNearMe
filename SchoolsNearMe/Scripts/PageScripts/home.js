@@ -3,9 +3,17 @@ var markersArray = [];
 var map;
 var infoWindow;
 function displayPosition(position) {
+	var centre;
+	if (Modernizr.localstorage && localStorage.getItem('lastLocation') != null) {
+		var output = parseLocation(localStorage.getItem('lastLocation'));
+		centre = new google.maps.LatLng(output.latitude, output.longitude);
+	} else {
+		centre = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	}
+
 	var mapOptions = {
 		//center: new google.maps.LatLng(51.52269, -0.984406),
-		center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+		center: centre,
 		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
@@ -14,6 +22,11 @@ function displayPosition(position) {
 
 	google.maps.event.addListener(map, 'idle', function () {
 		getSchools();
+		if (Modernizr.localstorage) {
+			localStorage.setItem('lastLocation', map.getCenter());	
+		}
+		
+		
 	});
 }
 
