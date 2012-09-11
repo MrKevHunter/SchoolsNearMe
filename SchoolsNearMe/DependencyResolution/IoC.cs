@@ -1,3 +1,4 @@
+using SchoolsNearMe.Services;
 using StructureMap;
 
 namespace SchoolsNearMe.DependencyResolution {
@@ -7,7 +8,10 @@ namespace SchoolsNearMe.DependencyResolution {
                 {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
+                    x.For<ISchoolQuery>().Use<SchoolQuery>().EnrichWith(
+                        (context, target) => new SchoolQueryLogger(target));
                 }));
+
             return ObjectFactory.Container;
         }
     }
