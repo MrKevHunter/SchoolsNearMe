@@ -322,6 +322,8 @@
     <Content Include="Images\NuGetGallery.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\MapHelperTests.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\chosen.jquery.min.js" />

@@ -2,10 +2,15 @@
 #rhsSearchBar {
 	width: 22%;
 	float: right;
-	margin: 20px;
+	margin-right:20px;
 }
 
 #map_canvas {
 	height: 100%;
 	width: 75%;
+}
+
+#mapAndSidebar {
+	height: 100%;
+	clear: both;
 }

@@ -36,7 +36,7 @@ function displayError(error) {
 		2: 'Position unavailable',
 		3: 'Request timeout'
 	};
-	alert("Error: " + errors[error.code]);
+//	alert("Error: " + errors[error.code]);
 	defaultLocation();
 }
 
@@ -94,7 +94,11 @@ function clearOverlays(markers) {
 	}
 }
 
-function getSchools() {
+function getSchools(ofsted) {
+	if (ofsted == undefined) {
+		ofsted = $("#overallOfstedRatingSlider").slider("value");
+	}
+
 	var boundries = map.getBounds();
 	var northEast = boundries.getNorthEast();
 	var southWest = boundries.getSouthWest();
@@ -102,7 +106,8 @@ function getSchools() {
 	var northEastLong = northEast.lng();
 	var southWestLat = southWest.lat();
 	var southWestLong = southWest.lng();
-	var ofstedRating = $("#overallOfstedRatingSlider").slider("value");
+	var ofstedRating = ofsted;
+
 	var items = $("#establishmentType").val();
 	$.ajax({
 		type: 'post',
