@@ -1,4 +1,4 @@
-namespace SchoolsNearMe
+namespace SchoolsNearMe.Attributes
 {
     public class ElmahErrorAttribute : System.Web.Http.Filters.ExceptionFilterAttribute
     {

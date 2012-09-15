@@ -8,6 +8,7 @@ using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
 using SchoolsNearMe.App_Start;
+using SchoolsNearMe.Attributes;
 
 namespace SchoolsNearMe
 {
@@ -42,6 +43,12 @@ namespace SchoolsNearMe
             {
                 
                 Store = new DocumentStore(){ConnectionStringName = "RavenDb"};
+                Store.Initialize();
+/*                Store = new EmbeddableDocumentStore()
+                {
+                    DataDirectory = Server.MapPath("App_Data/Raven")
+                };*/
+
                 Store.Initialize();
             }
             catch (Exception e)
