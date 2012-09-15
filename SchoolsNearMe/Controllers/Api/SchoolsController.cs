@@ -7,8 +7,10 @@ namespace SchoolsNearMe.Controllers.Api
 {
     public class SchoolsController : BaseApiController
     {
-        public SchoolsController(ISchoolQuery schoolQuery)
+        private readonly ISchoolShifterService _schoolShifterService;
+        public SchoolsController(ISchoolQuery schoolQuery,ISchoolShifterService schoolShifterService)
         {
+            _schoolShifterService = schoolShifterService;
             SchoolQuery = schoolQuery;
         }
 
@@ -16,12 +18,11 @@ namespace SchoolsNearMe.Controllers.Api
 
         public IEnumerable<School> Post(SchoolSearchParameters parameters)
         {
-            IEnumerable<School> schools =
-                SchoolQuery.GetSchools(
+             var schools =   SchoolQuery.GetSchools(
                     new MapBoundries(parameters.NorthEastLat, parameters.NorthEastLong, parameters.SouthWestLat,
                                      parameters.SouthWestLong),
                     RavenSession, parameters.OfstedRating, parameters.SchoolTypes);
-            return schools.ToList();
+            return _schoolShifterService.Shift(schools);
         }
     }
 }

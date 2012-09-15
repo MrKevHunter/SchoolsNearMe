@@ -218,6 +218,7 @@
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
     <Compile Include="Controllers\Api\ValuesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GeocodeSchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportDataController.cs" />
     <Compile Include="Controllers\SchoolDetailController.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Services\ISchoolQuery.cs" />
     <Compile Include="Services\MapBoundries.cs" />
     <Compile Include="Services\SchoolQuery.cs" />
+    <Compile Include="Services\SchoolShifterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\RavenDB.Embedded.1.2.2066-Unstable\tools\Raven.Studio.xap">
@@ -318,19 +320,36 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\aspNetHome.png" />
+    <Content Include="Images\blue-nursery.png" />
+    <Content Include="Images\blue-primary.png" />
+    <Content Include="Images\blue-secondary.png" />
+    <Content Include="Images\blue-unknown.png" />
     <Content Include="Images\facebook.png" />
     <Content Include="Images\findHosting.png" />
+    <Content Include="Images\green-nursery.png" />
+    <Content Include="Images\green-primary.png" />
+    <Content Include="Images\green-secondary.png" />
+    <Content Include="Images\green-unknown.png" />
     <Content Include="Images\NuGetGallery.png" />
+    <Content Include="Images\red-nursery.png" />
+    <Content Include="Images\red-primary.png" />
+    <Content Include="Images\red-Secondary.png" />
+    <Content Include="Images\red-unknown.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\MapHelperTests.js" />
     <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Images\yellow-nursery.png" />
+    <Content Include="Images\yellow-primary.png" />
+    <Content Include="Images\yellow-secondary.png" />
+    <Content Include="Images\yellow-unknown.png" />
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\Coordinates\MapHelper.js" />
     <Content Include="Scripts\jquery-1.8.0-vsdoc.js" />
     <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-ui-1.8.22.js" />
     <Content Include="Scripts\jquery-ui-1.8.22.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -398,6 +417,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\SearchSidebar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\GeocodeSchool\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\GeocodeSchool\UpdateSchool.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

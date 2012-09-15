@@ -35,7 +35,7 @@ $(document).ready(function () {
 		}
 	});
 	
-	var sliderValue = $("#overallOfstedRatingSlider").slider("value");
+    var sliderValue = $("#overallOfstedRatingSlider").slider("value");
 	$("#rating").val(ofstedDescriptions[sliderValue]);
 
 	$("#establishmentType").chosen();

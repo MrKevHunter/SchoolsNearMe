@@ -1,0 +1,26 @@
+﻿@model dynamic
+
+@*@{
+    ViewBag.Title = "Geocode a school";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}*@
+
+<h2>Geocode a school</h2>
+@Html.BeginForm("Update","GeocodeSchool")
+{
+    @Html.Label("Enter school urn:");
+    @Html.TextBox("schoolUrn");
+
+}
+@using (Html.BeginForm("Update", "GeocodeSchool", FormMethod.Post, new { id = "searchForm" }))    
+{
+    <div id="search">
+        <div id="searchbtn">
+            <input id="btnUpdate" type="submit" value="Update" />
+        </div>
+        <div id="searchtxt">
+            @Html.TextBox("txtSchoolUrn")
+        </div>
+    </div>
+}

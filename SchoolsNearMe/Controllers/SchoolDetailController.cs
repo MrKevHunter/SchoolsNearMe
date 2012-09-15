@@ -11,6 +11,7 @@ namespace SchoolsNearMe.Controllers
         public ActionResult Detail(int id)
         {
             var school = RavenSession.Load<School>(id.ToString());
+
             return PartialView(school);
         }
 

@@ -33,7 +33,7 @@ namespace SchoolsNearMe.DataImporter.Commands
                 GeocodeResult geocodeResult = new Geocode().GetCoordinates(school.GetAddress());
                 school.Location = geocodeResult.Location;
             }
-            catch(FormatException e)
+            catch(FormatException)
             {
                 Console.WriteLine("Unable to get address for {0}\nThere was a format exception", school);
             }
