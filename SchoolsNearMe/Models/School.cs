@@ -1,7 +1,10 @@
+using System;
+
 namespace SchoolsNearMe.Models
 {
     public class School
     {
+        private string _website;
         public string SchoolName { get; set; }
 
         public string PostCode { get; set; }
@@ -14,7 +17,19 @@ namespace SchoolsNearMe.Models
 
         public TypeOfEstablishment TypeOfEstablishment { get; set; }
 
-        public string Website { get; set; }
+        public string Website
+        {
+            get
+            {
+                string httpPrefix = "http://";
+                if (_website.StartsWith(httpPrefix,StringComparison.OrdinalIgnoreCase))
+                {
+                    return _website;
+                }
+                return httpPrefix + _website;
+            }
+            set { _website = value; }
+        }
 
         public Coordinate Location { get; set; }
 
