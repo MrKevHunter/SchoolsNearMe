@@ -9,18 +9,8 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/chosen")
 	@Scripts.Render("~/bundles/jqueryui")
-
-	<style type="text/css">
-		html {
-			height: 100%;
-		}
-		body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-	</style>
-</head>
+	<script type="text/javascript" src="../../Scripts/Coordinates/MapHelper.js"></script>
+	<script type="text/javascript" src="../../Scripts/json2.min.js"></script>
 <body>
 	@RenderBody()
 	@RenderSection("scripts", required: false)

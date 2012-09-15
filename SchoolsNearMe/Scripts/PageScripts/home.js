@@ -3,9 +3,17 @@ var markersArray = [];
 var map;
 var infoWindow;
 function displayPosition(position) {
+	var centre;
+	if (Modernizr.localstorage && localStorage.getItem('lastLocation') != null) {
+		var output = parseLocation(localStorage.getItem('lastLocation'));
+		centre = new google.maps.LatLng(output.latitude, output.longitude);
+	} else {
+		centre = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	}
+
 	var mapOptions = {
 		//center: new google.maps.LatLng(51.52269, -0.984406),
-		center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+		center: centre,
 		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
@@ -14,6 +22,11 @@ function displayPosition(position) {
 
 	google.maps.event.addListener(map, 'idle', function () {
 		getSchools();
+		if (Modernizr.localstorage) {
+			localStorage.setItem('lastLocation', map.getCenter());	
+		}
+		
+		
 	});
 }
 
@@ -23,7 +36,7 @@ function displayError(error) {
 		2: 'Position unavailable',
 		3: 'Request timeout'
 	};
-	alert("Error: " + errors[error.code]);
+//	alert("Error: " + errors[error.code]);
 	defaultLocation();
 }
 
@@ -81,8 +94,9 @@ function clearOverlays(markers) {
 	}
 }
 
+
 function getColour(school) {
-    if(school.OfstedRating.OverallEffectiveness == 1) {
+    if (school.OfstedRating.OverallEffectiveness == 1) {
         return "Green";
     }
     if (school.OfstedRating.OverallEffectiveness == 2) {
@@ -115,7 +129,11 @@ function getIcon(school) {
     return "/Images/" + colour + "-" + age + ".png";
 }
 
-function getSchools() {
+function getSchools(ofsted) {
+	if (ofsted == undefined) {
+		ofsted = $("#overallOfstedRatingSlider").slider("value");
+	}
+
 	var boundries = map.getBounds();
 	var northEast = boundries.getNorthEast();
 	var southWest = boundries.getSouthWest();
@@ -123,16 +141,14 @@ function getSchools() {
 	var northEastLong = northEast.lng();
 	var southWestLat = southWest.lat();
 	var southWestLong = southWest.lng();
-	var ofstedRating = $("#overallOfstedRatingSlider").slider("value"); ;
 	var items = $("#establishmentType").val();
 	$.ajax({
 	    type: 'post',
 	    url: '/api/schools',
 	    dataType: 'json',
-	    data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofstedRating, schoolTypes: items }),
+	    data: JSON.stringify({ northEastLat: northEastLat, northEastLong: northEastLong, southWestLat: southWestLat, southWestLong: southWestLong, ofstedRating: ofsted, schoolTypes: items }),
 	    contentType: 'application/json; charset=utf-8',
 	    success: function (result) {
-
 	        var markersToDelete = new Array();
 	        for (var mapCount in map.placeMarkers) {
 	            var found = false;

@@ -8,6 +8,7 @@ using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
 using SchoolsNearMe.App_Start;
+using SchoolsNearMe.Attributes;
 
 namespace SchoolsNearMe
 {
@@ -40,9 +41,13 @@ namespace SchoolsNearMe
 
             try
             {
-               
-                Store = new DocumentStore(){ConnectionStringName = "RavenDB"};
                 
+                Store = new DocumentStore(){ConnectionStringName = "RavenDb"};
+                Store.Initialize();
+/*                Store = new EmbeddableDocumentStore()
+                {
+                    DataDirectory = Server.MapPath("App_Data/Raven")
+                };*/
 
                 Store.Initialize();
             }
@@ -57,6 +62,8 @@ namespace SchoolsNearMe
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalConfiguration.Configuration.Filters.Add(new ElmahErrorAttribute());
         }
     }
 }
