@@ -38,6 +38,9 @@
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>..\packages\RavenDB.Database.1.2.2066-Unstable\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\packages\dotless.1.3.0.5\lib\dotless.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
@@ -259,9 +262,41 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Content\bootstrap.nuget.readme.txt" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap\js\bootstrap-alert.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-button.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-carousel.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-modal.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-popover.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tab.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-transition.js" />
+    <Content Include="Content\bootstrap\js\bootstrap-typeahead.js" />
+    <Content Include="Content\bootstrap\js\tests\index.html" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-alert.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-button.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-collapse.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-dropdown.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-modal.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-popover.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-scrollspy.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tab.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-tooltip.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-transition.js" />
+    <Content Include="Content\bootstrap\js\tests\unit\bootstrap-typeahead.js" />
+    <Content Include="Content\bootstrap\js\tests\vendor\jquery.js" />
+    <Content Include="Content\bootstrap\js\tests\vendor\qunit.css" />
+    <Content Include="Content\bootstrap\js\tests\vendor\qunit.js" />
     <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\chosen.css" />
     <Content Include="Content\Custom.css" />
+    <Content Include="Content\google-code-prettify\prettify.css" />
+    <Content Include="Content\google-code-prettify\prettify.js" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -423,6 +458,45 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\GeocodeSchool\UpdateSchool.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\bootstrap\js\README.md" />
+    <None Include="Content\bootstrap\less\accordion.less" />
+    <None Include="Content\bootstrap\less\alerts.less" />
+    <None Include="Content\bootstrap\less\badges.less" />
+    <None Include="Content\bootstrap\less\bootstrap.less" />
+    <None Include="Content\bootstrap\less\breadcrumbs.less" />
+    <None Include="Content\bootstrap\less\button-groups.less" />
+    <None Include="Content\bootstrap\less\buttons.less" />
+    <None Include="Content\bootstrap\less\carousel.less" />
+    <None Include="Content\bootstrap\less\close.less" />
+    <None Include="Content\bootstrap\less\code.less" />
+    <None Include="Content\bootstrap\less\component-animations.less" />
+    <None Include="Content\bootstrap\less\dropdowns.less" />
+    <None Include="Content\bootstrap\less\forms.less" />
+    <None Include="Content\bootstrap\less\grid.less" />
+    <None Include="Content\bootstrap\less\hero-unit.less" />
+    <None Include="Content\bootstrap\less\labels.less" />
+    <None Include="Content\bootstrap\less\layouts.less" />
+    <None Include="Content\bootstrap\less\mixins.less" />
+    <None Include="Content\bootstrap\less\modals.less" />
+    <None Include="Content\bootstrap\less\navbar.less" />
+    <None Include="Content\bootstrap\less\navs.less" />
+    <None Include="Content\bootstrap\less\pager.less" />
+    <None Include="Content\bootstrap\less\pagination.less" />
+    <None Include="Content\bootstrap\less\popovers.less" />
+    <None Include="Content\bootstrap\less\progress-bars.less" />
+    <None Include="Content\bootstrap\less\reset.less" />
+    <None Include="Content\bootstrap\less\responsive.less" />
+    <None Include="Content\bootstrap\less\scaffolding.less" />
+    <None Include="Content\bootstrap\less\sprites.less" />
+    <None Include="Content\bootstrap\less\tables.less" />
+    <None Include="Content\bootstrap\less\thumbnails.less" />
+    <None Include="Content\bootstrap\less\tooltip.less" />
+    <None Include="Content\bootstrap\less\type.less" />
+    <None Include="Content\bootstrap\less\utilities.less" />
+    <None Include="Content\bootstrap\less\variables.less" />
+    <None Include="Content\bootstrap\less\wells.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
