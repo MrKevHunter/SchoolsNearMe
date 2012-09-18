@@ -213,6 +213,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\Api\AddressGeocodeController.cs" />
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
     <Compile Include="Controllers\Api\ValuesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\GeocodeSchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportDataController.cs" />
@@ -399,6 +401,7 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\PageScripts\home.js" />
     <Content Include="Scripts\PageScripts\SearchSidebar.js" />
+    <Content Include="Scripts\PageScripts\layout.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -497,6 +500,8 @@
     <None Include="Content\bootstrap\less\utilities.less" />
     <None Include="Content\bootstrap\less\variables.less" />
     <None Include="Content\bootstrap\less\wells.less" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
