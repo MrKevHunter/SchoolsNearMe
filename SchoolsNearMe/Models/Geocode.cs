@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Web;
+using SchoolsNearMe.Contracts;
 
 namespace SchoolsNearMe.Models
 {

@@ -4,19 +4,19 @@ namespace SchoolsNearMe.Models
 {
     public class GeocodeResult
     {
-        private GeocodeResult()
-        {
-        }
-
         public GeocodeReturnCode ReturnCode { get; set; }
         public decimal Accuracy { get; set; }
         public Coordinate Location { get; set; }
+
+        private GeocodeResult()
+        {
+        }
 
         public static GeocodeResult CreateResultFromGoogleCsv(string[] geocodeInfo)
         {
             if (geocodeInfo.Length== 3)
             {
-                return new GeocodeResult(){ReturnCode = GetReturnCode(geocodeInfo[0])};
+                return new GeocodeResult {ReturnCode = GetReturnCode(geocodeInfo[0])};
             }
             var result = new GeocodeResult
                 {

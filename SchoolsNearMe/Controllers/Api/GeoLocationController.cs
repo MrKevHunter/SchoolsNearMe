@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Web;
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Models;
-using SchoolsNearMe.Services;
 
 namespace SchoolsNearMe.Controllers.Api
 {
@@ -15,6 +15,7 @@ namespace SchoolsNearMe.Controllers.Api
             LocationService = locationService;
         }
 
+        // get: /api/geolocation
         public Coordinate Get()
         {
             string ipaddress = GetIP4Address();

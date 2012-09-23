@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\Api\ValuesControllerTest.cs" />
     <Compile Include="Services\SchoolShifterServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +111,9 @@
       <Project>{DC7CAB96-DAFE-4F15-9342-5EA62873A313}</Project>
       <Name>SchoolsNearMe</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

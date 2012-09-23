@@ -8,7 +8,6 @@ namespace SchoolsNearMe.Controllers
     {
         //
         // GET: /ImportData/
-
         public ActionResult Index()
         {
             return View();

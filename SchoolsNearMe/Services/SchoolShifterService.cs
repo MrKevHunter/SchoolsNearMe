@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Models;
 
 namespace SchoolsNearMe.Services
@@ -8,7 +9,6 @@ namespace SchoolsNearMe.Services
     {
         public List<School> Shift(IEnumerable<School> schools)
         {
-            
             var schoolList = schools as List<School> ?? schools.ToList();
             var coordinates = schoolList.GroupBy(x => x.Location).Where(g => g.Count() > 1).Select(x => x.Key);
             foreach (var coordinate in coordinates)
@@ -25,10 +25,5 @@ namespace SchoolsNearMe.Services
             }
             return schoolList.ToList();
         }
-    }
-
-    public interface ISchoolShifterService
-    {
-        List<School> Shift(IEnumerable<School> schools);
     }
 }

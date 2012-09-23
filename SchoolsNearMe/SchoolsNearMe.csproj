@@ -214,9 +214,8 @@
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
-    <Compile Include="Controllers\Api\SchoolSearchParameters.cs" />
+    <Compile Include="Models\SchoolSearchParameters.cs" />
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
-    <Compile Include="Controllers\Api\ValuesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GeocodeSchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -232,24 +231,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddressSearch.cs" />
+    <Compile Include="Models\DailyQueryData.cs" />
     <Compile Include="Models\RavenDbDumper.cs" />
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\DumperStats.cs" />
     <Compile Include="Models\Geocode.cs" />
     <Compile Include="Models\GeocodeResult.cs" />
     <Compile Include="Models\GeocodeReturnCode.cs" />
-    <Compile Include="Models\IGeocode.cs" />
+    <Compile Include="Contracts\IGeocode.cs" />
     <Compile Include="Models\Indexes\FindSchoolByCoordsAndOfsted.cs" />
     <Compile Include="Models\Indexes\FindSchoolByName.cs" />
-    <Compile Include="Models\ISpatialCoordinate.cs" />
+    <Compile Include="Contracts\ISpatialCoordinate.cs" />
     <Compile Include="Models\OfstedRating.cs" />
     <Compile Include="Models\School.cs" />
     <Compile Include="Models\TypeOfEstablishment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\HostIpLocationService.cs" />
-    <Compile Include="Services\ILocationService.cs" />
-    <Compile Include="Services\ISchoolQuery.cs" />
-    <Compile Include="Services\MapBoundries.cs" />
+    <Compile Include="Contracts\ILocationService.cs" />
+    <Compile Include="Contracts\ISchoolQuery.cs" />
+    <Compile Include="Models\MapBoundries.cs" />
+    <Compile Include="Contracts\ISchoolShifterService.cs" />
     <Compile Include="Services\SchoolQuery.cs" />
     <Compile Include="Services\SchoolShifterService.cs" />
   </ItemGroup>
@@ -395,7 +396,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -408,9 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Import\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\SchoolDetail\Detail.cshtml" />

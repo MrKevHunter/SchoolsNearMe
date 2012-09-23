@@ -1,4 +1,5 @@
-﻿using SchoolsNearMe.Models;
+﻿using SchoolsNearMe.Contracts;
+using SchoolsNearMe.Models;
 
 namespace SchoolsNearMe.Controllers.Api
 {
@@ -11,17 +12,10 @@ namespace SchoolsNearMe.Controllers.Api
             _geocode = geocode;
         }
 
-
-        public Coordinate Post(AddressSearch  address)
-        {
-           
+        public Coordinate Post(AddressSearch address)
+        {           
             GeocodeResult geocodeResult = _geocode.GetCoordinates(address.AddressSearchText);
-            if (geocodeResult.ReturnCode==GeocodeReturnCode.Success)
-            {
-                return geocodeResult.Location;
-            }
-            return new Coordinate(0,0);
+            return (geocodeResult.ReturnCode==GeocodeReturnCode.Success) ? geocodeResult.Location : new Coordinate(0,0);
         }
-
     }
 }
