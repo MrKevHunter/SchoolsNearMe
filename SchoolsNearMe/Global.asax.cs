@@ -14,24 +14,12 @@ using SchoolsNearMe.Attributes;
 
 namespace SchoolsNearMe
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static Exception LastException;
-        private const string RavenSessionKey = "RavenMVC.Session";
         private const string RavenDbUseEmbeddedKey = "ravendb:UseEmbedded";
 
         public static IDocumentStore Store;
-
-        public static IDocumentSession CurrentSession
-        {
-            get
-            {
-                return (IDocumentSession)HttpContext.Current.Items[RavenSessionKey];
-            }
-        }
 
         private bool UseEmbedded
         {
@@ -45,39 +33,10 @@ namespace SchoolsNearMe
             }
         }
 
-        protected void Application_OnError()
-        {
-
-
-        }
-
         protected void Application_Start()
         {
+            Bootstrapper();
 
-            try
-            {
-                if (UseEmbedded)
-                {
-                    Store = new EmbeddableDocumentStore
-                        {
-                            DataDirectory = Server.MapPath("App_Data/Raven")
-                        };
-                }
-                else
-                {
-                    Store = new DocumentStore
-                        {
-                            ConnectionStringName = "RavenDb"
-                        };    
-                }
-                
-                Store.Initialize();
-            }
-            catch (Exception e)
-            {
-                LastException = e;
-                Console.WriteLine(e);
-            }
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -86,6 +45,34 @@ namespace SchoolsNearMe
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.Filters.Add(new ElmahErrorAttribute());
+        }
+
+        private void Bootstrapper()
+        {
+            try
+            {
+                if (UseEmbedded)
+                {
+                    Store = new EmbeddableDocumentStore
+                    {
+                        DataDirectory = Server.MapPath("App_Data/Raven")
+                    };
+                }
+                else
+                {
+                    Store = new DocumentStore
+                    {
+                        ConnectionStringName = "RavenDb"
+                    };
+                }
+
+                Store.Initialize();
+            }
+            catch (Exception e)
+            {
+                LastException = e;
+                Console.WriteLine(e);
+            }
         }
     }
 }
