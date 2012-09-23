@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Raven.Client;
 using Raven.Client.Document;
+using System.Linq;
 using Raven.Client.Embedded;
 using SchoolsNearMe.App_Start;
 using SchoolsNearMe.Attributes;
@@ -19,6 +21,7 @@ namespace SchoolsNearMe
     {
         public static Exception LastException;
         private const string RavenSessionKey = "RavenMVC.Session";
+        private const string RavenDbUseEmbeddedKey = "ravendb:UseEmbedded";
 
         public static IDocumentStore Store;
 
@@ -27,6 +30,18 @@ namespace SchoolsNearMe
             get
             {
                 return (IDocumentSession)HttpContext.Current.Items[RavenSessionKey];
+            }
+        }
+
+        private bool UseEmbedded
+        {
+            get
+            {
+                if (ConfigurationManager.AppSettings.AllKeys.Contains(RavenDbUseEmbeddedKey))
+                {
+                    return bool.Parse(ConfigurationManager.AppSettings[RavenDbUseEmbeddedKey]);
+                }
+                return false;
             }
         }
 
@@ -41,14 +56,21 @@ namespace SchoolsNearMe
 
             try
             {
-                
-                Store = new DocumentStore(){ConnectionStringName = "RavenDb"};
-                Store.Initialize();
-/*                Store = new EmbeddableDocumentStore()
+                if (UseEmbedded)
                 {
-                    DataDirectory = Server.MapPath("App_Data/Raven")
-                };*/
-
+                    Store = new EmbeddableDocumentStore
+                        {
+                            DataDirectory = Server.MapPath("App_Data/Raven")
+                        };
+                }
+                else
+                {
+                    Store = new DocumentStore
+                        {
+                            ConnectionStringName = "RavenDb"
+                        };    
+                }
+                
                 Store.Initialize();
             }
             catch (Exception e)
