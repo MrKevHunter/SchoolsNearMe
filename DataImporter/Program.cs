@@ -21,8 +21,8 @@ namespace SchoolsNearMe.DataImporter
             new StopIndexing().Execute(_store);
             new ImportFromCsvCommand().Execute(_store);
             new StartIndexing().Execute(_store);
-          */  
-            new UploadRavenItem().Execute(_store);
+          */
+            new CheckProximityCommand().Execute(_store);
             _store.Dispose();
 
             Console.ReadLine();

@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 
 namespace SchoolsNearMe.Models
 {
-    public class School
+    public class School : IEquatable<School>
     {
         private string _website;
         public string SchoolName { get; set; }
@@ -38,6 +39,39 @@ namespace SchoolsNearMe.Models
         public bool IsSchoolClosed { get; set; }
 
         public string SchoolType { get; set; }
+
+        public bool Equals(School other)
+        {
+            return this.Id.Equals(other.Id);
+        }
+
+        private sealed class IdEqualityComparer : IEqualityComparer<School>
+        {
+            public bool Equals(School x, School y)
+            {
+                if (ReferenceEquals(x, y)) return true;
+                if (ReferenceEquals(x, null)) return false;
+                if (ReferenceEquals(y, null)) return false;
+                if (x.GetType() != y.GetType()) return false;
+                return string.Equals(x.Id, y.Id);
+            }
+
+            public int GetHashCode(School obj)
+            {
+                return obj.Id.GetHashCode();
+            }
+        }
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
+
+        private static readonly IEqualityComparer<School> IdComparerInstance = new IdEqualityComparer();
+
+        public static IEqualityComparer<School> IdComparer
+        {
+            get { return IdComparerInstance; }
+        }
 
         public override string ToString()
         {

@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="BingGeoCoder.cs" />
     <Compile Include="BingXmlFormatter.cs" />
+    <Compile Include="Commands\CheckProximityCommand.cs" />
     <Compile Include="Commands\CountUncodedSchools.cs" />
     <Compile Include="Commands\GeocodeWithBingCommand.cs" />
     <Compile Include="Commands\GetUnlocatedSchooldsCommand.cs" />

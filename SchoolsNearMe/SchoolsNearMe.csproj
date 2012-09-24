@@ -216,7 +216,6 @@
     <Compile Include="Controllers\Api\SchoolsController.cs" />
     <Compile Include="Controllers\Api\SchoolSearchParameters.cs" />
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
-    <Compile Include="Controllers\Api\ValuesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GeocodeSchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
