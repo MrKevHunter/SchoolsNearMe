@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using SchoolsNearMe.Models;
 
-namespace SchoolsNearMe.Services
+namespace SchoolsNearMe.Contracts
 {
     public interface ILocationService
     {

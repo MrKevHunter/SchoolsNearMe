@@ -1,4 +1,4 @@
-namespace SchoolsNearMe.Models
+namespace SchoolsNearMe.Contracts
 {
     public interface ISpatialCoordinate
     {

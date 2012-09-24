@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Raven.Client;
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Models;
 
 namespace SchoolsNearMe.Services
 {
     public class SchoolQuery : ISchoolQuery
     {
-        #region ISchoolQuery Members
-
         public IEnumerable<School> GetSchools(MapBoundries mapBoundries, IDocumentSession ravenSession,
                                               int overallOfstedRating, List<string> schoolTypes = null)
         {
@@ -35,14 +34,11 @@ namespace SchoolsNearMe.Services
                 }
             }
 
-
             List<School> schools =
                 ravenSession.Advanced.LuceneQuery<School>().WaitForNonStaleResultsAsOfNow().Skip(0).Take(100).Where(
                     query).ToList();
 
             return schools;
         }
-
-        #endregion
     }
 }

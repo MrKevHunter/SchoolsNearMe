@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Models;
 
 namespace SchoolsNearMe.Controllers
@@ -18,7 +15,6 @@ namespace SchoolsNearMe.Controllers
 
         //
         // GET: /GeocodeSchool/
-
         public ActionResult Index()
         {
             return View();

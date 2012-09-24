@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /Source/*/obj
 /Source/*/bin
 _ReSharper.*
@@ -10,6 +9,9 @@ _ReSharper.*
 *~
 *.swp
 NDependOut
+App_Data
+*.DotSettings
+
 
 /Build
 /Distribution
@@ -72,4 +74,3 @@ obj
 
 # mstest test results
 TestResults
->>>>>>> 786d872f17cf852680f246b6e1e773ee07d3ca37

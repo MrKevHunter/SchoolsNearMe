@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SchoolsNearMe.Controllers.Api
+namespace SchoolsNearMe.Models
 {
     public class SchoolSearchParameters
     {

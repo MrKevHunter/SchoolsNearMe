@@ -1,4 +1,6 @@
-namespace SchoolsNearMe.Models
+using SchoolsNearMe.Models;
+
+namespace SchoolsNearMe.Contracts
 {
     public interface IGeocode
     {

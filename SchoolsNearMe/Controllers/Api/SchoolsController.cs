@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Models;
 using SchoolsNearMe.Services;
 
@@ -16,6 +16,7 @@ namespace SchoolsNearMe.Controllers.Api
 
         private ISchoolQuery SchoolQuery { get; set; }
 
+        // post: /api/schools
         public IEnumerable<School> Post(SchoolSearchParameters parameters)
         {
              var schools =   SchoolQuery.GetSchools(

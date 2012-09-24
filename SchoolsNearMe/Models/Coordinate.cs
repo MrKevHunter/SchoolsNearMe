@@ -1,4 +1,5 @@
 using System;
+using SchoolsNearMe.Contracts;
 
 namespace SchoolsNearMe.Models
 {

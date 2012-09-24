@@ -32,7 +32,5 @@ namespace SchoolsNearMe.Extensions
 
             return en.ToString();
         }
-
     }
-
 }

@@ -1,3 +1,4 @@
+using SchoolsNearMe.Contracts;
 using SchoolsNearMe.Services;
 using StructureMap;
 

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Raven.Client;
 using SchoolsNearMe.Models;
+using SchoolsNearMe.Services;
 
-namespace SchoolsNearMe.Services
+namespace SchoolsNearMe.Contracts
 {
     public interface ISchoolQuery
     {
@@ -40,11 +41,5 @@ namespace SchoolsNearMe.Services
             ravenSession.SaveChanges();
             return result;
         }
-    }
-
-    public class DailyQueryData
-    {
-        public string Id { get; set; }
-        public int TotalQueries { get; set; }
     }
 }
