@@ -1,23 +1,40 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title</title>
-	@Styles.Render("~/Content/themes/base/css", "~/Content/css")
-	@Scripts.Render("~/bundles/modernizr")
-	@Scripts.Render("~/bundles/jquery")
-	@Scripts.Render("~/bundles/chosen")
-	@Scripts.Render("~/bundles/jqueryui")
-	<script type="text/javascript" src="../../Scripts/Coordinates/MapHelper.js"></script>
-	<script type="text/javascript" src="../../Scripts/json2.min.js"></script>
-<body>
-	@RenderBody()
-	@RenderSection("scripts", required: false)
-	<script type="text/javascript">
-		$().ready(function (parameters) {
-			$(":button").button();
-		});
-	</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr") 
+        @Scripts.Render("~/bundles/jquery") @Scripts.Render("~/bundles/chosen")
+        @Scripts.Render("~/bundles/jqueryui")
+        <script type="text/javascript" src="../../Scripts/Coordinates/MapHelper.js"></script>
+        <script type="text/javascript" src="../../Scripts/json2.min.js"></script>
+        <link href="@Url.Content("~/Content/bootstrap/less/bootstrap.less")" rel="Stylesheet" />
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                                                                                                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </a><a class="brand" href="#">Schools Near Me</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li>@Html.ActionLink("Home","Index","Home")</li>
+                            <li>@Html.ActionLink("About","Index","About")</li>
+                            <li>@Html.ActionLink("Contact","Index","Contact")</li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div id="headSpacer"></div>
+        @RenderBody() 
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript" src="../../Scripts/PageScripts/layout.js">
+   
+    </script>
+    </body>
 </html>

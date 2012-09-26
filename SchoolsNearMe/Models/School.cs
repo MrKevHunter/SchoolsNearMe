@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SchoolsNearMe.Models
 {
+    [DebuggerDisplay("SchoolName")]
     public class School : IEquatable<School>
     {
         private string _website;
+
         public string SchoolName { get; set; }
 
         public string PostCode { get; set; }
@@ -23,7 +26,7 @@ namespace SchoolsNearMe.Models
             get
             {
                 const string httpPrefix = "http://";
-                if (_website.StartsWith(httpPrefix,StringComparison.OrdinalIgnoreCase))
+                if (_website.StartsWith(httpPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     return _website;
                 }
@@ -73,14 +76,14 @@ namespace SchoolsNearMe.Models
             get { return IdComparerInstance; }
         }
 
-        public override string ToString()
-        {
-            return SchoolName + ", " + Town;
-        }
-
         public string GetAddress()
         {
             return string.Format("{0}, {1}, {2}, {3}", SchoolName, Street, Town, PostCode);
+        }
+
+        public override string ToString()
+        {
+            return SchoolName + ", " + Town;
         }
     }
 }
