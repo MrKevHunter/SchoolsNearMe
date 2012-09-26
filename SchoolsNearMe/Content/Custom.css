@@ -13,4 +13,8 @@
 #mapAndSidebar {
 	height: 100%;
 	clear: both;
+    margin-top: 16px;
+}
+#headSpacer {
+    padding-top: 35px;
 }

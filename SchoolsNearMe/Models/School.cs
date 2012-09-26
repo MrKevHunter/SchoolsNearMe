@@ -1,10 +1,13 @@
 using System;
+using System.Diagnostics;
 
 namespace SchoolsNearMe.Models
 {
+    [DebuggerDisplay("SchoolName")]
     public class School
     {
         private string _website;
+
         public string SchoolName { get; set; }
 
         public string PostCode { get; set; }
@@ -21,8 +24,8 @@ namespace SchoolsNearMe.Models
         {
             get
             {
-                string httpPrefix = "http://";
-                if (_website.StartsWith(httpPrefix,StringComparison.OrdinalIgnoreCase))
+                const string httpPrefix = "http://";
+                if (_website.StartsWith(httpPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     return _website;
                 }
@@ -39,14 +42,14 @@ namespace SchoolsNearMe.Models
 
         public string SchoolType { get; set; }
 
-        public override string ToString()
-        {
-            return SchoolName + ", " + Town;
-        }
-
         public string GetAddress()
         {
             return string.Format("{0}, {1}, {2}, {3}", SchoolName, Street, Town, PostCode);
+        }
+
+        public override string ToString()
+        {
+            return SchoolName + ", " + Town;
         }
     }
 }
