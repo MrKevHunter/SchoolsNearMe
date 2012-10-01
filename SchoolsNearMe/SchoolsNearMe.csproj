@@ -218,6 +218,7 @@
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\SchoolSearchParameters.cs" />
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -499,6 +500,8 @@
     <None Include="Content\bootstrap\less\wells.less" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\SendMessage.cshtml" />
+    <Content Include="Views\Contact\ContactConfirm.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,8 +1,25 @@
-﻿@model dynamic
-
+﻿@model SchoolsNearMe.Models.ContactUs
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "SchoolsNearMe.co.uk Contact Us";
     Layout = "../Shared/_Layout.cshtml";
 }
-
-<h2>title</h2>
+<div class="container">
+    <h2>
+        Contact us</h2>
+		@if (!ViewData.ModelState.IsValid)
+{
+      <div>Sending the message failed</div>
+}
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            @Html.LabelFor(l => l.From)
+            @Html.TextBoxFor(l => l.From) @Html.ValidationMessageFor(model => model.From) 
+            @Html.LabelFor(l => l.Body)
+            @Html.TextAreaFor(l => l.Body, 5, 10000, null) @Html.ValidationMessageFor(model => model.Body) 
+            <p> 
+                <input type="submit" value="Send" /> 
+            </p> 
+        </fieldset>
+    }
+</div>
