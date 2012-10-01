@@ -47,6 +47,9 @@
     <Reference Include="Esent.Interop">
       <HintPath>..\packages\RavenDB.Database.1.2.2066-Unstable\lib\net40\Esent.Interop.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>..\packages\RavenDB.Database.1.2.2066-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
@@ -218,11 +221,11 @@
     <Compile Include="Controllers\Api\BaseApiController.cs" />
     <Compile Include="Controllers\Api\GeoLocationController.cs" />
     <Compile Include="Controllers\Api\SchoolsController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\SchoolSearchParameters.cs" />
     <Compile Include="Controllers\Api\SchoolsUploadController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\GeocodeSchoolController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportDataController.cs" />
@@ -266,6 +269,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="bin\RouteDebug.dll" />
     <Content Include="Content\bootstrap.nuget.readme.txt" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
