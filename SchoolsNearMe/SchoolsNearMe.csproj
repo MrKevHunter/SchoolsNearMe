@@ -266,6 +266,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="bin\RouteDebug.dll" />
     <Content Include="Content\bootstrap.nuget.readme.txt" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
@@ -378,6 +379,7 @@
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
+    <Content Include="Scripts\mailcheck.min.js" />
     <Content Include="Scripts\MapHelperTests.js" />
     <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Images\yellow-nursery.png" />

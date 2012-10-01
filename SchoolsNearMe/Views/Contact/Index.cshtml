@@ -6,20 +6,33 @@
 <div class="container">
     <h2>
         Contact us</h2>
-		@if (!ViewData.ModelState.IsValid)
-{
-      <div>Sending the message failed</div>
-}
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div>
+            Sending the message failed</div>
+    }
     @using (Html.BeginForm())
     {
         <fieldset>
             @Html.LabelFor(l => l.From)
-            @Html.TextBoxFor(l => l.From) @Html.ValidationMessageFor(model => model.From) 
+            @Html.TextBoxFor(l => l.From, new
+                {
+                    id = "email"
+                }) @Html.ValidationMessageFor(model => model.From)
             @Html.LabelFor(l => l.Body)
-            @Html.TextAreaFor(l => l.Body, 5, 10000, null) @Html.ValidationMessageFor(model => model.Body) 
-            <p> 
-                <input type="submit" value="Send" /> 
-            </p> 
+            @Html.TextAreaFor(l => l.Body, 5, 10000, null) @Html.ValidationMessageFor(model => model.Body)
+            <p>
+                <input type="submit" value="Send" />
+            </p>
         </fieldset>
     }
 </div>
+<script src="../../Scripts/mailcheck.min.js"> </script>
+<script language="javascript" type="text/javascript">
+	var domains = ['hotmail.com', 'gmail.com', 'aol.com'];
+	var topLevelDomains = ["com", "net", "org"];
+
+	$('#email').on('blur', function() {
+		$(this).mailcheck();
+	});
+</script>

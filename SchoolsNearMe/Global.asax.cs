@@ -45,6 +45,7 @@ namespace SchoolsNearMe
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.Filters.Add(new ElmahErrorAttribute());
+            
         }
 
         private void Bootstrapper()

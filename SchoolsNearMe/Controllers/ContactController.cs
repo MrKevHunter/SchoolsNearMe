@@ -10,7 +10,7 @@ namespace SchoolsNearMe.Controllers
             return View();
         }
 
-        [HttpPost]
+/*        [HttpPost]
         public ActionResult Index(ContactUs contactUs)
         {
             if (!ModelState.IsValid)
@@ -26,7 +26,7 @@ namespace SchoolsNearMe.Controllers
                 return View();
             }
             return RedirectToAction("ContactConfirm");
-        }
+        }*/
 
         public ActionResult ContactConfirm()
         {
