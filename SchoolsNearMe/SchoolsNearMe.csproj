@@ -50,6 +50,9 @@
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.0.87\lib\net40\Glimpse.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Mvc3">
+      <HintPath>..\packages\Glimpse.Mvc3.0.87\lib\net40\Glimpse.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>..\packages\RavenDB.Database.1.2.2066-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
@@ -260,8 +263,10 @@
     <Compile Include="Contracts\ISchoolQuery.cs" />
     <Compile Include="Models\MapBoundries.cs" />
     <Compile Include="Contracts\ISchoolShifterService.cs" />
+    <Compile Include="Services\ISendEmail.cs" />
     <Compile Include="Services\SchoolQuery.cs" />
     <Compile Include="Services\SchoolShifterService.cs" />
+    <Compile Include="Services\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\RavenDB.Embedded.1.2.2066-Unstable\tools\Raven.Studio.xap">
@@ -269,6 +274,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="bin\RouteDebug.dll" />
     <Content Include="Content\bootstrap.nuget.readme.txt" />
@@ -383,6 +389,7 @@
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
+    <Content Include="Scripts\mailcheck.js" />
     <Content Include="Scripts\mailcheck.min.js" />
     <Content Include="Scripts\MapHelperTests.js" />
     <Content Include="Scripts\chosen.jquery.js" />
